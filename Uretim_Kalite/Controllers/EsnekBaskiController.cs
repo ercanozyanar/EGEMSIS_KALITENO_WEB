@@ -25,6 +25,8 @@ namespace Uretim_Kalite.Controllers
         public static string adi;
         public static string fname;
         SqlCommand komut = new SqlCommand();
+
+
         public ActionResult Baskilist(int sayfa = 1)
         {
             var degerler = db.EGEM_ESNEK_BASKI_KALITE.ToList().ToPagedList(sayfa, 20);
@@ -90,6 +92,7 @@ namespace Uretim_Kalite.Controllers
             EGEM_GRAVUR_KALITE_SIPARIS model = db.EGEM_GRAVUR_KALITE_SIPARIS.FirstOrDefault(f => f.FISNO.Contains(FISNO));
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public ActionResult SendEmail(string MSIPARIS_NO, string MBOBINNO,string MHATA,string MIMAJ)
         {
@@ -109,21 +112,15 @@ namespace Uretim_Kalite.Controllers
                     UseDefaultCredentials = false,
                     Credentials = new NetworkCredential(senderEmail.Address, password)
                 };
-
-
                 using (var mess = new MailMessage(senderEmail, receiverEmail)
-
                 {
                     Subject = subject,
                     Body = body
-
                 })
-                    
                 {
                     mess.Attachments.Add(new Attachment(fname));
                     smtp.Send(mess);
                 }
-
                 komut.CommandText = "INSERT INTO EGEM_ESNEK_BASKI_KALITENOKIMAJ (SIPARISNO,BOBINNO,HATA,IMAJ,ADRES) VALUES (@MSIPARIS_NO,@MBOBINNO,@MHATA,@IMAJ,@ADRES)";
                 komut.Connection = conn1;
                 komut.CommandType = CommandType.Text;
@@ -132,7 +129,7 @@ namespace Uretim_Kalite.Controllers
                 komut.Parameters.Add("@MBOBINNO", MBOBINNO);
                 komut.Parameters.Add("@MHATA", MHATA);
                 komut.Parameters.Add("@IMAJ", MIMAJ);
-                komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ESNEK_NOK_IMAJ" + adi + "_" + MIMAJ);
+                komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ofisdata\\NOK_IMAJ\\ESNEKBASKI\\" + adi + "_" + MIMAJ);
                 komut.ExecuteReader();
                 conn1.Close();
                 return View();
@@ -171,7 +168,7 @@ namespace Uretim_Kalite.Controllers
                         {
                             string dosyaadi = DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_" + DateTime.Now.Second.ToString();
                             string fileName = System.IO.Path.GetFileName(file.FileName);
-                            fname = Path.Combine(("//192.168.0.252//ESNEK_NOK_IMAJ"),dosyaadi +"_"+ fileName);
+                            fname = Path.Combine(("//192.168.0.252//ofisdata//NOK_IMAJ//ESNEKBASKI//"),dosyaadi +"_"+ fileName);
                             file.SaveAs(fname);
                             adi = dosyaadi;
                         }

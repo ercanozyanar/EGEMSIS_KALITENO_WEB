@@ -378,7 +378,6 @@
                             <input class="form-control input-sm" id="MSIPARIS_NO" type="text" name="MSIPARIS_NO" size="20" value="">
                             <input class="form-control input-sm" id="HATAID" hidden="hidden" type="text" name="HATAID_NO" size="20" value="">
                             <input class="form-control input-sm" id="UPLOADID" hidden="hidden" type="text" name="UPLOAD_NO" size="20" value="">
-
                         </div>
                         &nbsp;&nbsp;
                         <div>
@@ -411,6 +410,7 @@
             var MBOBINNO = $("#MBOBINNO").val();
             var MHATA = $("#message-text").val();
             var HATAIDX = $("#HATAID").val();
+
             if (HATAIDX == "1") { $("#Nokgir1").val(MHATA) }
             if (HATAIDX == "2") { $("#Nokgir2").val(MHATA) }
             if (HATAIDX == "3") { $("#Nokgir3").val(MHATA) }
@@ -440,8 +440,7 @@
             if (HATAIDX == "27") { $("#Gtxt27").val(MHATA) }
             $.ajax({
                 type: 'POST',
-                url: '/EsnekBaski/SendEmail/' + MSIPNO, MBOBINNO,
-                //contentType: "application/json; charset=utf-8",
+                url: '/EsnekBaski/SendEmail/' + MSIPNO, MBOBINNO,, UPLOADMAIL,
                 data: {
                     "MSIPARIS_NO": MSIPNO, "MBOBINNO": MBOBINNO, "MHATA": MHATA, "MIMAJ": UPLOADMAIL
                 },

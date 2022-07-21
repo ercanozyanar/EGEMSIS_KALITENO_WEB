@@ -21,7 +21,7 @@
         &nbsp;&nbsp;
         <div>
             <label for="txt2">URUN KODU</label>
-            <input class="form-control input-sm" id="skod_txt" type="text" readonly="readonly"  name="URUN_KODU" value="" size="20">
+            <input class="form-control input-sm" id="skod_txt" type="text" readonly="readonly" name="URUN_KODU" value="" size="20">
         </div>
         &nbsp;&nbsp;
         <div>
@@ -61,7 +61,7 @@
             <th>Dilme Eni (mm) (Teknik Şartnameye uygunluk)</th>
             <th>
                 <div class="btn-group" data-toggle="buttons">
-                   <input class="form-control input-sm" id="Gtxt1" autocomplete="off" type="text" name="DILME_ENI">
+                    <input class="form-control input-sm" id="Gtxt1" autocomplete="off" type="text" name="DILME_ENI">
                     &nbsp;&nbsp;
                     <button type="button" class="btn btn btn-danger" name="DILME_ENI2" id="Nokgir1" value="1" data-toggle="modal" data-target="#exampleModal">NOTOK</button>
 
@@ -75,7 +75,7 @@
                     <input class="form-control input-sm" id="Gtxt2" autocomplete="off" type="text" name="FOTOSEL_ARALIGI" value="">
                     &nbsp;&nbsp;
                     <button type="button" class="btn btn btn-danger" name="FOTOSEL_ARALIGI2" id="Nokgir2" value="2" data-toggle="modal" data-target="#exampleModal">NOTOK</button>
-                          </div>
+                </div>
             </th>
         </tr>
         <tr style="background-color:lemonchiffon">
@@ -113,7 +113,7 @@
                     <input class="form-control input-sm" id="Gtxt6" type="text" autocomplete="off" name="BOBIN_CAP" value="">
                     &nbsp;&nbsp;
                     <button type="button" class="btn btn btn-danger" name="BOBIN_CAP2" id="Nokgir6" value="6" data-toggle="modal" data-target="#exampleModal">NOTOK</button>
-                                    </div>
+                </div>
             </th>
         </tr>
         <tr style="background-color:lemonchiffon">
@@ -159,7 +159,7 @@
                     <input class="form-control input-sm" id="Gtxt11" type="text" autocomplete="off" name="CIZGI" value="">
                     &nbsp;&nbsp;
                     <button type="button" class="btn btn btn-danger" name="CIZGI2" id="Nokgir11" value="11" data-toggle="modal" data-target="#exampleModal">NOTOK</button>
-                                    </div>
+                </div>
             </th>
         </tr>
         <tr style="background-color:white">
@@ -178,7 +178,7 @@
                     <input class="form-control input-sm" id="Gtxt13" type="text" autocomplete="off" name="SARIM_DUZGUN" value="">
                     &nbsp;&nbsp;
                     <button type="button" class="btn btn btn-danger" name="SARIM_DUZGUN2" id="Nokgir13" value="13" data-toggle="modal" data-target="#exampleModal">NOTOK</button>
-                                    </div>
+                </div>
             </th>
         </tr>
         <tr style="background-color:white">
@@ -212,8 +212,11 @@
     </table>
     <div>
         <button class="btn btn-success">Kaydet</button>
-
     </div>
+
+
+
+
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -230,6 +233,7 @@
                             <label for="ltxt1">SIPARIS NO</label>
                             <input class="form-control input-sm" id="MSIPARIS_NO" type="text" name="MSIPARIS_NO" size="20" value="">
                             <input class="form-control input-sm" id="HATAID" hidden="hidden" type="text" name="HATAID_NO" size="20" value="">
+                            <input class="form-control input-sm" id="UPLOADID" hidden="hidden" type="text" name="UPLOAD_NO" size="20" value="">
                         </div>
                         &nbsp;&nbsp;
                         <div>
@@ -238,19 +242,20 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Hata Nedeni:</label>
                         <textarea class="form-control" id="message-text"></textarea>
                     </div>
 
+                    <input class="btn btn-danger" type="file" id="FileUpload1" />
+                    <input class="btn btn-outline-danger" type="button" id="btnUpload" value="Dosya Yükle" />
 
+                    &nbsp;&nbsp;
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="send">Send message</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" id="send">Gönder</button>
 
                     </div>
-
                 </div>
             </div>
         </div>
@@ -264,6 +269,7 @@
     $(document).ready(function () {
         $("#send").click(function () {
             var HATAIDX = ""
+            var UPLOADMAIL = $("#UPLOADID").val();
             var MSIPNO = $("#MSIPARIS_NO").val();
             var MBOBINNO = $("#MBOBINNO").val();
             var MHATA = $("#message-text").val();
@@ -287,28 +293,70 @@
             if (HATAIDX == "16") { $("#Nokgir16").val(MHATA) }
             $.ajax({
                 type: 'POST',
-                url: '/EsnekDilimleme/SendEmail/' + MSIPNO, MBOBINNO,
-
+                url: '/EsnekDilimleme/SendEmail/' + MSIPNO, MBOBINNO, UPLOADMAIL,
                 data: {
-                    "MSIPARIS_NO": MSIPNO, "MBOBINNO": MBOBINNO, "MHATA": MHATA
+                    "MSIPARIS_NO": MSIPNO, "MBOBINNO": MBOBINNO, "MHATA": MHATA, "MIMAJ": UPLOADMAIL
                 },
                 datatype: "Json",
                 success: function (data) { }
             });
-
-
-
             alert("Mesajınız Gönderilmiştir...")
 
             $('#exampleModal').modal('hide');
         });
     });
 </script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $('#btnUpload').click(function () {
+            var upload = ""
+            $("#UPLOADID").val("");
+            if (window.FormData !== undefined) {
+                var fileUpload = $("#FileUpload1").get(0);
+                var files = fileUpload.files;
+                var fileData = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                    upload = files[i].name
+                    $("#UPLOADID").val(upload);
+                }
+                fileData.append('username', 'yazilimsozluk');
+                $.ajax({
+                    type: "POST",
+                    url: '/EsnekDilimleme/DosyaYukle',
+
+                    contentType: false,
+                    processData: false,
+                    data: fileData,
+                    success: function (result) {
+                        alert(result);
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("Form Data desteklenmiyor.");
+            }
+        });
+    });
+</script>
+
+
+
 <script type="text/javascript">
     $("#Nokgir1").click(function () {
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir1").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -322,6 +370,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir2").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+        
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -335,6 +387,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir3").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -348,6 +404,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir4").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+        
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -361,6 +421,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir5").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -374,6 +438,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir6").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -387,6 +455,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir7").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -400,6 +472,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir8").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -413,6 +489,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir9").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -426,6 +506,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir10").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -439,6 +523,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir11").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -452,6 +540,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir12").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -465,6 +557,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir13").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -478,6 +574,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir14").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -491,6 +591,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir15").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -504,6 +608,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir16").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");

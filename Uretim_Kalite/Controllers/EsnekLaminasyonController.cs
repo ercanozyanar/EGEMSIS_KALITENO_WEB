@@ -18,7 +18,10 @@ namespace Uretim_Kalite.Controllers
     public class EsnekLaminasyonController : Controller
     {
         EGEM2021Entities1 db = new EGEM2021Entities1();
-        SqlConnection conn1 = new SqlConnection("Data Source=192.168.0.251;Initial Catalog=EGEM2021;Persist Security Info=True;User ID=egem;Password=123456");
+        SqlConnection conn1 = new SqlConnection("Data Source=192.168.0.251;Initial Catalog=EGEM2022;Persist Security Info=True;User ID=egem;Password=123456");
+        public static string adi;
+        public static string fname;
+        SqlCommand komut = new SqlCommand();
 
         public ActionResult Laminasyonlist(int sayfa = 1)
         {
@@ -36,18 +39,13 @@ namespace Uretim_Kalite.Controllers
             {
                 Search_Data = Filter_Value;
             }
-
             ViewBag.FilterValue = Search_Data;
-
             var students = from stu in db.EGEM_ESNEK_LAMINASYON_KALITE select stu;
-
             if (!String.IsNullOrEmpty(Search_Data))
             {
                 students = students.Where(stu => stu.SIPARIS_NO.ToUpper().Contains(Search_Data.ToUpper()));
             }
-
             students = students.OrderByDescending(stu => stu.ID);
-
             int Size_Of_Page = 10;
             int No_Of_Page = (Page_No ?? 1);
             return View(students.ToPagedList(No_Of_Page, Size_Of_Page));
@@ -94,13 +92,12 @@ namespace Uretim_Kalite.Controllers
         }
 
         [HttpPost]
-        public ActionResult SendEmail(string MSIPARIS_NO, string MBOBINNO, string MHATA)
+        public ActionResult SendEmail(string MSIPARIS_NO, string MBOBINNO, string MHATA, string MIMAJ)
         {
             try
             {
                 var senderEmail = new MailAddress("bilgi@egemambalaj.com.tr", "Egemsis");
-                var receiverEmail = new MailAddress("ercan.ozyanar@egemambalaj.com.tr,egemsis.kalite@egemambalaj.com.tr", "Receiver");
-
+                var receiverEmail = new MailAddress("ercan.ozyanar@egemambalaj.com.tr");
                 var password = "Zug81146";
                 var subject = "SIPARIS NO : " + MSIPARIS_NO + " " + " PALET NO :" + MBOBINNO + " " + " Esnek Laminasyon Kalite Hata";
                 var body = "SIPARIS NO : " + MSIPARIS_NO + " " + " PALET NO :" + MBOBINNO + " " + " TARIH :" + DateTime.Now + " HATA BILDIRIMI :" + MHATA;
@@ -119,19 +116,28 @@ namespace Uretim_Kalite.Controllers
                     Body = body
                 })
                 {
+                    mess.Attachments.Add(new Attachment(fname));
                     smtp.Send(mess);
                 }
-
-
+                komut.CommandText = "INSERT INTO EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ (SIPARISNO,BOBINNO,HATA,IMAJ,ADRES) VALUES (@MSIPARIS_NO,@MBOBINNO,@MHATA,@IMAJ,@ADRES)";
+                komut.Connection = conn1;
+                komut.CommandType = CommandType.Text;
+                conn1.Open();
+                komut.Parameters.Add("@MSIPARIS_NO", MSIPARIS_NO);
+                komut.Parameters.Add("@MBOBINNO", MBOBINNO);
+                komut.Parameters.Add("@MHATA", MHATA);
+                komut.Parameters.Add("@IMAJ", MIMAJ);
+                komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ofisdata\\NOK_IMAJ\\ESNEKLAMINASYON\\" + adi + "_" + MIMAJ);
+                komut.ExecuteReader();
+                conn1.Close();
                 return View();
-
             }
             catch (Exception)
             {
-
                 return View();
             }
         }
+
         public ActionResult Sil(int id)
         {
             var laminasyon = db.EGEM_ESNEK_LAMINASYON_KALITE.Find(id);
@@ -140,6 +146,44 @@ namespace Uretim_Kalite.Controllers
             return RedirectToAction("Laminasyonduzen");
 
         }
+        [HttpPost]
+        public JsonResult DosyaYukle()
+        {
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    HttpFileCollectionBase files = Request.Files;
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                    HttpPostedFileBase file = files[i];
+                        if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                        {
+                            string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                            fname = testfiles[testfiles.Length - 1];
+                        }
+                        else
+                        {
+                            string dosyaadi = DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_" + DateTime.Now.Second.ToString();
+                            string fileName = System.IO.Path.GetFileName(file.FileName);
+                            fname = Path.Combine(("//192.168.0.252//ofisdata//NOK_IMAJ//ESNEKLAMINASYON//"), dosyaadi + "_" + fileName);
+                            file.SaveAs(fname);
+                            adi = dosyaadi;
+                        }
+                    }
+                    return Json("Dosya Yükleme Başarılı");
+                }
+                catch (Exception ex)
+                {
+                    return Json("Hata Oluştu:  " + ex.Message);
+                }
+            }
+            else
+            {
+                return Json("Dosya seçilmedi");
+            }
+        }
+
         [HttpPost]
         public FileResult Export()
         {
