@@ -1,0 +1,155 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using Uretim_Kalite.Models.Entity;
+
+@model PagedList.IPagedList<EGEM_GRAVUR_KALITE>
+
+@{
+    ViewBag.Title = "Gravurduzen";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+&nbsp;
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Gravur Kalite NOK Liste</strong>
+</div>
+&nbsp;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/lib/bootstrap.min.css">
+<script src="/lib/jquery-1.12.2.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
+<p></p>
+<div class="form-group row">
+    &nbsp;&nbsp;
+    <div>
+        @using (Html.BeginForm("Gravurduzen", "Gravur", FormMethod.Get))
+        {
+            <p>
+                Tarih: @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
+                <input type="submit" value="Bul" />
+            </p>
+        }
+    </div>
+    &nbsp;&nbsp;
+    <div>
+
+        @using (Html.BeginForm("Export", "Gravur", FormMethod.Post))
+        {<input type="submit" value="Excel Aktar" class="btn-success" />}
+
+    </div>
+    &nbsp;&nbsp;
+</div>
+<table id="baskiduzen" class="table table-striped table-bordered table-hover " width="100" cellspacing="0">
+
+    <tr>
+        <th>SIL</th>
+        <th>MAKINA</th>
+        <th>URUN_KODU</th>
+        <th>URUN_ADI</th>
+        <th>SIPARIS_NO</th>
+        <th>TARIH</th>
+        <th>SAAT</th>
+        <th>PALET NO</th>
+        <th>BUNDLE YUKSEKLIGI</th>
+        <th>HAMMADDE KONTROLU</th>
+        <th>HAMMADDE OBA KONTROLU</th>
+        <th>HAMMADDE FIZIKSEL OLCUM</th>
+        <th>SILINDIR KOD KONTROL</th>
+        <th>BASKI ICERIK</th>
+        <th>BASKI REGISTER KONTROL</th>
+        <th>ONAYLI NUMUNE RENK KONTROL(GORSEL)</th>
+        <th>ONAYLI NUMUNE RENK KONTROL(SPECTRO)</th>
+        <th>YELPAZE RENK KONTROL</th>
+        <th>BARKOD OKUTMA</th>
+        <th>ISIL YAPIŞMA</th>
+        <th>PARLAKLIK</th>
+        <th>COF TESTI (DINAMIK SURTUNME)</th>
+        <th>COF TESTI (STATIK SURTUNME)</th>
+        <th>ASINMA TESTI</th>
+        <th>BASKI HATASI</th>
+        <th>PALET YERLESIM KONTROL</th>
+        <th>PALET GORSEL KONTROL</th>
+        <th>HAMMADDE GORSEL KONTROL</th>
+        <th>MAKINE TEMIZLIK</th>
+        <th>SILINDIR VURUK KONTROL</th>
+        <th>LAK KURUMA</th>
+        <th>BICAK FILM KONTROL</th>
+        <th>KESIM GORSEL KONTROL</th>
+        <th>KESIM EBAT KONTROL</th>
+        <th>TABAKA KONTROL</th>
+        <th>MONTAJ DIRENC KONTROL</th>
+        <th>KIRIM DIRENC OLCUM</th>
+        <th>KUTU YAPISMA</th>
+        <th>EMBOSS-DEBOSS KONTROL</th>
+        <th>BOBIN EKI PATLAK KONTROL</th>
+        <th>EMBOSS-DEBOSS REGISTER KONTROL</th>
+        <th>EMBOSS-DEBOSS KONTROL(DERINLIK)</th>
+        <th>KULAKCIK KATLANMASI KONTROL</th>
+        <th>KIRPINTI KONTROL</th>
+        <th>PALET ETIKETI KONTROL</th>
+        <th>KALITE ONAY</th>
+    </tr>
+    <tbody>
+        @foreach (var egravur in Model)
+        {
+            <tr>
+                <th><a href="/Gravur/Sil/@egravur.ID" class="btn btn-danger">SIL</a></th>
+                <th>@egravur.MAKINE</th>
+                <th>@egravur.urun_kodu</th>
+                <td>@egravur.urun_adi</td>
+                <td>@egravur.sipno</td>
+                <td>@egravur.tarih</td>
+                <td>@egravur.saat</td>
+                <td>@egravur.palet_no</td>
+                <td>@egravur.bundle_yuksek</td>
+                <td>@egravur.hammadde_kontrol</td>
+                <td>@egravur.hammadde_oba</td>
+                <td>@egravur.hammadde_fiziki</td>
+                <td>@egravur.silindir_kod_kontrol</td>
+                <td>@egravur.baski_icerik</td>
+                <td>@egravur.baski_register</td>
+                <td>@egravur.onay_num_renk_gorsel</td>
+                <td>@egravur.onay_num_renk_spectro</td>
+                <td>@egravur.yelpaze_renk_kont</td>
+                <td>@egravur.barkod_okut</td>
+                <td>@egravur.isil_yapis_kont</td>
+                <td>@egravur.parlaklik</td>
+                <td>@egravur.cof_test_dinamik</td>
+                <td>@egravur.cof_test_statik</td>
+                <td>@egravur.asinma_test</td>
+                <td>@egravur.baski_hata</td>
+                <td>@egravur.palet_yerlesim</td>
+                <td>@egravur.palet_gorsel</td>
+                <td>@egravur.hammadde_gorsel_kontrol</td>
+                <td>@egravur.makine_temiz_renk</td>
+                <td>@egravur.silindir_vuruk</td>
+                <td>@egravur.lak_kuruma</td>
+                <td>@egravur.bicak_film</td>
+                <td>@egravur.kesim_gorsel</td>
+                <td>@egravur.kesim_ebat</td>
+                <td>@egravur.tabaka_hasar</td>
+                <td>@egravur.montaj_pilyaj</td>
+                <td>@egravur.kirim_direnc</td>
+                <td>@egravur.kutu_yapisma</td>
+                <td>@egravur.emdeb_kontrol</td>
+                <td>@egravur.bobin_patlak</td>
+                <td>@egravur.emdeb_register</td>
+                <td>@egravur.emdeb_gorsel</td>
+                <td>@egravur.kulakcik_katlan</td>
+                <td>@egravur.kirim_direnc</td>
+                <td>@egravur.palet_etiket</td>
+                <td>@egravur.kontrol_onay</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, Page_No =>Url.Action("Gravurduzen",
+            new { Page_No, Sorting_Order= ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+
+
+
+
+

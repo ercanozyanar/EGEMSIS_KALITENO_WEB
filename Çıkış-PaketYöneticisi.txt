@@ -1,0 +1,18 @@
+﻿
+
+'Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0' paketi için hedefi '.NETFramework,Version=v4.6.1' olan 'Uretim_Kalite' projesine göre bağımlılık bilgisi toplanmaya çalışılıyor
+Bağımlılık bilgilerinin toplanması 51,59 ms sürdü
+DependencyBehavior 'Lowest' ile 'Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0' paketi için bağımlılıklar çözümlenmeye çalışılıyor
+Bağımlılık işlemlerinin çözümlenmesi 0 ms sürdü
+'Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0' paketini yüklemek için eylemler çözümleniyor
+'Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0' paketini yüklemek için eylemler çözümlendi
+'Microsoft.CodeDom.Providers.DotNetCompilerPlatform 3.6.0' paketi 'nuget.org' konumundan alınıyor.
+'Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0' paketi 'E:\ERCAN_OZYANAR\Kalite_Kontrol_MVC\Uretim_Kalite11102021\packages' klasörüne ekleniyor
+'Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0' paketi 'E:\ERCAN_OZYANAR\Kalite_Kontrol_MVC\Uretim_Kalite11102021\packages' klasörüne eklendi
+'Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0' paketi 'packages.config' öğesine eklendi
+'E:\ERCAN_OZYANAR\Kalite_Kontrol_MVC\Uretim_Kalite11102021\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\tools\net45\install.ps1' betik dosyası yürütülüyor...
+'Microsoft.CodeDom.Providers.DotNetCompilerPlatform 3.6.0', Uretim_Kalite öğesine başarıyla yüklendi
+Nuget eylemlerinin yürütülmesi 9,14 sec sürdü
+Geçen Süre: 00:00:10.0271870
+========== Tamamlandı ==========
+

@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="#"><img class="img-circle" style="height:50px;width:50px" src="~/Image/Logo1.jpg" /> &nbsp;&nbsp;Kalite NOK Giriş</a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Esnek Baskı
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/EsnekBaski/Baskiekle/">Giriş</a>
+                    <a class="dropdown-item" href="/EsnekBaski/Baskiduzen/">Düzenleme</a>
+                </div>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Esnek Dilimleme
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/EsnekDilimleme/Dilimlemeekle/">Giriş</a>
+                    <a class="dropdown-item" href="/EsnekDilimleme/Dilimlemeduzen/">Düzenleme</a>
+                </div>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Esnek Laminasyon
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/EsnekLaminasyon/Laminasyonekle/">Giriş</a>
+                    <a class="dropdown-item" href="/EsnekLaminasyon/Laminasyonduzen/">Düzenleme</a>
+                </div>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Gravur Baskı
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/Gravur/Gravurekle/">Giriş</a>
+                    <a class="dropdown-item" href="/Gravur/Gravurduzen/">Düzenleme</a>
+                </div>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Baskı Öncesi
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/OfsetBaski/Ofsetbaskiekle/">Giriş</a>
+                    <a class="dropdown-item" href="/OfsetBaski/Ofsetbaskiduzen/">Düzenleme</a>
+                </div>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Baskı Sonrası
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/OfsetBitirme/Ofsetbitirmeekle/">Giriş</a>
+                    <a class="dropdown-item" href="/OfsetBitirme/Ofsetbitirmeduzen/">Düzenleme</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Kalite Personel
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/Kalite/Kaliteekle/">Giriş</a>
+                    <a class="dropdown-item" href="/Kalite/Kalitelist/">Liste</a>
+                </div>
+            </li>
+        </ul>
+
+
+    </nav>
+
+ 
+
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~bundles/jquery")
+    @RenderSection("scripts",required:false)
+</body>
+</html>

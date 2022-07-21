@@ -1,0 +1,106 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using Uretim_Kalite.Models.Entity;
+
+@model PagedList.IPagedList<EGEM_ESNEK_DILIMLEME_KALITE>
+@{
+    ViewBag.Title = "Dilimlemeduzen";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+&nbsp;
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Esnek Dilimleme Kalite NOK Liste</strong>
+</div>
+&nbsp;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/lib/bootstrap.min.css">
+<script src="/lib/jquery-1.12.2.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
+<p></p>
+<div class="form-group row">
+    &nbsp;&nbsp;
+    <div>
+        @using (Html.BeginForm("Dilimlemeduzen", "EsnekDilimleme", FormMethod.Get))
+        {
+            <p>
+                Tarih: @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
+                <input type="submit" value="Bul" />
+            </p>
+        }
+    </div>
+    &nbsp;&nbsp;
+    <div>
+
+        @using (Html.BeginForm("Export", "EsnekDilimleme", FormMethod.Post))
+        {<input type="submit" value="Excel Aktar" class="btn-success" />}
+
+    </div>
+    &nbsp;&nbsp;
+</div>
+<table id="dilimlemeduzen" class="table table-striped table-bordered table-hover " width="100" cellspacing="0">
+
+    <tr>
+        <th>SIL</th>
+        <th>MAKINA</th>
+        <th>URUN_KODU</th>
+        <th>URUN_ADI</th>
+        <th>SIPARIS_NO</th>
+        <th>ZAMAN</th>
+        <th>BOBIN NO</th>
+        <th>DILME ENI</th>
+        <th>FOTOSEL ARALIGI</th>
+        <th>ACILIS YONU</th>
+        <th>MASURA IC CAPI</th>
+        <th>EK SAYISI</th>
+        <th>BOBIN CAPI</th>
+        <th>GORSEL KONTROL</th>
+        <th>KESIM KAYIKLIGI</th>
+        <th>TONLAMA</th>
+        <th>SAKAL</th>
+        <th>ÇIZGI</th>
+        <th>RENK UYGUNLUGU</th>
+        <th>SARIM DUZGUNLUGU</th>
+        <th>BOBIN EK KONTROLÜ</th>
+        <th>BOBIN BARKODU OKUNABILIRLIK</th>
+        <th>BARKOD KONTROLU</th>
+        <th>KALITE ONAY</th>
+    </tr>
+    <tbody>
+        @foreach (var edilme in Model)
+        {
+            <tr>
+                <th><a href="/EsnekDilimleme/Sil/@edilme.ID" class="btn btn-danger">SIL</a></th>
+                <th>@edilme.MAKINE</th>
+                <th>@edilme.URUN_KODU</th>
+                <td>@edilme.URUN_ADI</td>
+                <td>@edilme.SIPARIS_NO</td>
+                <td>@edilme.ZAMAN</td>
+                <td>@edilme.BOBIN_NO</td>
+                <td>@edilme.DILME_ENI</td>
+                <td>@edilme.FOTOSEL_ARALIGI</td>
+                <td>@edilme.ACILIS_YONU</td>
+                <td>@edilme.IC_CAP</td>
+                <td>@edilme.EK_SAYI</td>
+                <td>@edilme.BOBIN_CAP</td>
+                <td>@edilme.GORSEL_KONTROL</td>
+                <td>@edilme.KESIM_KAYIK</td>
+                <td>@edilme.TONLAMA</td>
+                <td>@edilme.SAKAL</td>
+                <td>@edilme.CIZGI</td>
+                <td>@edilme.RENK_UYGUN</td>
+                <td>@edilme.SARIM_DUZGUN</td>
+                <td>@edilme.BOBIN_EKI_KONTROL</td>
+                <td>@edilme.BOBIN_BARKOD_OKUT</td>
+                <td>@edilme.BARKOD_KONTROL</td>
+                <td>@edilme.KALITE_ONAY</td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, Page_No =>Url.Action("Dilimlemeduzen",
+            new { Page_No, Sorting_Order= ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+

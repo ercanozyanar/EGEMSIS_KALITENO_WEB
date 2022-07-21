@@ -1,0 +1,401 @@
+﻿@model IEnumerable<Uretim_Kalite.Models.Entity.EGEM_GRAVUR_KALITE_SIPARIS>
+@{
+    ViewBag.Title = "Laminasyonekle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+&nbsp;
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Esnek Laminasyon Kalite NOK Girişi</strong>
+</div>
+&nbsp;
+<form class="form-group" method="post">
+    <div class="form-group row">
+        &nbsp;&nbsp;
+        <div>
+            <label for="ltxt1">SIPARIS NO</label>
+            <input class="form-control input-sm" id="txt1" type="text" autocomplete="off" name="SIPARIS_NO" value="" size="20">
+            <p></p>
+            <input type="button" class="btn btn-danger" id="Sipbul" value="Sipariş Bul" />
+
+        </div>
+        &nbsp;&nbsp;
+        <div>
+            <label for="txt2">URUN KODU</label>
+            <input class="form-control input-sm" id="skod_txt" type="text" readonly="readonly" name="URUN_KODU" value="" size="20">
+        </div>
+        &nbsp;&nbsp;
+        <div>
+            <label for="txt3">URUN ADI</label>
+            <input class="form-control input-sm" id="sad_txt" type="text" readonly="readonly" name="URUN_ADI" value="" size="80">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        &nbsp;&nbsp;
+        <div>
+            <label for="drp1">MAKINE ADI</label>
+            <fieldset>
+                <select id="drp1" name="MAKINE" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected="selected" value="1">Makine Adı Seçiniz</option>
+                    <option>NORD MECCANICA</option>
+                </select>
+            </fieldset>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <div>
+            <label for="drp1">KALITE ONAY</label>
+            <br />
+            @Html.DropDownList("KALITE_ONAY", "Onay Veren Personel Seçiniz...")
+                   </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <div>
+            <label for="ltxt4">BOBIN NO</label>
+            <input class="form-control input-sm" id="txt4" type="text" autocomplete="off" name="BOBIN_NO" size="10" />
+        </div>
+    </div>
+    <table class="table table-striped table-bordered dt-responsive nowrap" width="100" cellspacing="0">
+        <tr style="background-color:lemonchiffon">
+            <th>Bobin Eni (mm)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <input class="form-control input-sm" type="text" autocomplete="off" id="Gtxt1" name="BOBIN_ENI" value="">
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn btn-danger" name="BOBIN_ENI2" id="Nokgir1" value="1" data-toggle="modal" data-target="#exampleModal">NOTOK</button>
+                </div>
+            </th>
+        </tr>
+        <tr style="        background-color: white">
+            <th>Fotosel Aralığı (mm)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <input class="form-control input-sm" type="text" id="Gtxt2" autocomplete="off" name="FOTOSEL_ARALIGI" value="">
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn btn-danger" name="FOTOSEL_ARALIGI2" id="Nokgir2" value="2" data-toggle="modal" data-target="#exampleModal">NOTOK</button>
+                                   </div>
+            </th>
+        </tr>
+        <tr style="background-color:lemonchiffon">
+            <th>Al folyo Lam.Yönü (2.Kat Aluminyum veya Metalize ise)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default alert-success"><input type="radio" name="AL_FOLYO_YONU" value="OK">OK</label>
+                    <label class="btn btn-default alert-danger"><input type="radio" name="AL_FOLYO_YONU" value="3" id="Nokgir3" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon"></span> NOT OK</label>
+                </div>
+            </th>
+        </tr>
+        <tr style="background-color:white">
+            <th>Tutkal Gramajı (g/m2)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <input class="form-control input-sm" type="text" id="Gtxt4" autocomplete="off" name="TUTKAL_GRAMAJ" value="">
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn btn-danger" name="TUTKAL_GRAMAJ2" id="Nokgir4" value="4" data-toggle="modal" data-target="#exampleModal">NOTOK</button>
+                                   </div>
+            </th>
+        </tr>
+        <tr style="background-color:lemonchiffon">
+            <th>Birim Agırlık (g/m2)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <input class="form-control input-sm" type="text" id="Gtxt5" autocomplete="off" name="BIRIM_AGIRLIK" value="">
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn btn-danger" name="BIRIM_AGIRLIK2" id="Nokgir5" value="5" data-toggle="modal" data-target="#exampleModal">NOTOK</button>
+                    
+                </div>
+            </th>
+        </tr>
+        <tr style="background-color:white">
+            <th>Yapışma Kontrolü - Delaminasyon (Elle)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default alert-success"><input type="radio" name="YAPISMA_KONTROL" value="OK">OK</label>
+                    <label class="btn btn-default alert-danger"><input type="radio" name="YAPISMA_KONTROL" value="6" id="Nokgir6" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon"></span> NOT OK</label>
+                </div>
+            </th>
+        </tr>
+        <tr style="background-color:lemonchiffon">
+            <th>Görsel Kontrol</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default alert-success"><input type="radio" name="GORSEL_KONTROL" value="OK">OK</label>
+                    <label class="btn btn-default alert-danger"><input type="radio" name="GORSEL_KONTROL" value="7" id="Nokgir7" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon"></span> NOT OK</label>
+                </div>
+            </th>
+        </tr>
+        <tr style="background-color:white">
+            <th>Bencik Kontrolü (Kürlenme Sonrası)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default alert-success"><input type="radio" name="BENCIK_KONTROL" value="OK">OK</label>
+                    <label class="btn btn-default alert-danger"><input type="radio" name="BENCIK_KONTROL" value="8" id="Nokgir8" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon"></span> NOT OK</label>
+                </div>
+            </th>
+        </tr>
+        <tr style="background-color:lemonchiffon">
+            <th>Isıl Yapışma Kontrolü (Kürlenme Sonrası)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default alert-success"><input type="radio" name="ISIL_YAPISMA_KONT" value="OK">OK</label>
+                    <label class="btn btn-default alert-danger"><input type="radio" name="ISIL_YAPISMA_KONT" value="9" id="Nokgir9" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon"></span> NOT OK</label>
+                </div>
+            </th>
+        </tr>
+        <tr style="background-color:white">
+            <th>Laminasyon Kuvveti (Kürlenme Sonrası)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default alert-success"><input type="radio" name="LAMINASYON_KUVVETI" value="OK">OK</label>
+                    <label class="btn btn-default alert-danger"><input type="radio" name="LAMINASYON_KUVVETI" value="10" id="Nokgir10" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon"></span> NOT OK</label>
+                </div>
+            </th>
+        </tr>
+        <tr style="background-color:lemonchiffon">
+            <th>Cof Testi (Kürlenme Sonrası)</th>
+            <th>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default alert-success"><input type="radio" name="COF_TEST" value="OK">OK</label>
+                    <label class="btn btn-default alert-danger"><input type="radio" name="COF_TEST" value="11" id="Nokgir11" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon"></span> NOT OK</label>
+                </div>
+            </th>
+        </tr>
+        <input class="form-control input-sm" id="ZAMANID" hidden="hidden" type="text" name="ZAMAN" size="20" value=@DateTime.Now>
+    </table>
+    <div>
+        <button class="btn btn-success">Kaydet</button>
+
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">NOK Nedeni</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        &nbsp;&nbsp;
+                        <div>
+                            <label for="ltxt1">SIPARIS NO</label>
+                            <input class="form-control input-sm" id="MSIPARIS_NO" type="text" name="MSIPARIS_NO" size="20" value="">
+                            <input class="form-control input-sm" id="HATAID" hidden="hidden" type="text" name="HATAID_NO" size="20" value="">
+                        </div>
+                        &nbsp;&nbsp;
+                        <div>
+                            <label for="txt2">BOBIN NO</label>
+                            <input class="form-control input-sm" id="MBOBINNO" type="text" name="MBOBINNO" size="20">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Hata Nedeni:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="send">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#send").click(function () {
+            var HATAIDX = ""
+            var MSIPNO = $("#MSIPARIS_NO").val();
+            var MBOBINNO = $("#MBOBINNO").val();
+            var MHATA = $("#message-text").val();
+            var HATAIDX = $("#HATAID").val();
+            if (HATAIDX == "1") { $("#Gtxt1").val(MHATA) }
+            if (HATAIDX == "2") { $("#Gtxt2").val(MHATA) }
+            if (HATAIDX == "3") { $("#Nokgir3").val(MHATA) }
+            if (HATAIDX == "4") { $("#Gtxt4").val(MHATA) }
+            if (HATAIDX == "5") { $("#Gtxt5").val(MHATA) }
+            if (HATAIDX == "6") { $("#Nokgir6").val(MHATA) }
+            if (HATAIDX == "7") { $("#Nokgir7").val(MHATA) }
+            if (HATAIDX == "8") { $("#Nokgir8").val(MHATA) }
+            if (HATAIDX == "9") { $("#Nokgir9").val(MHATA) }
+            if (HATAIDX == "10") { $("#Nokgir10").val(MHATA) }
+            if (HATAIDX == "11") { $("#Nokgir11").val(MHATA) }
+            $.ajax({
+                type: 'POST',
+                url: '/EsnekLaminasyon/SendEmail/' + MSIPNO, MBOBINNO,
+                data: {
+                    "MSIPARIS_NO": MSIPNO, "MBOBINNO": MBOBINNO, "MHATA": MHATA
+                },
+                datatype: "Json",
+                success: function (data) { }
+            });
+            alert("Mesajınız Gönderilmiştir...")
+            $('#exampleModal').modal('hide');
+        });
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir1").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir1").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir2").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir2").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir3").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir3").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir4").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir4").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir5").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir5").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir6").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir6").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir7").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir7").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir8").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir8").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir9").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir9").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir10").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir10").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+<script type="text/javascript">
+    $("#Nokgir11").click(function () {
+        var SIP = $("#txt1").val();
+        var BOB = $("#txt4").val();
+        var HATID = $("#Nokgir11").val();
+        $("#MSIPARIS_NO").val("");
+        $("#MBOBINNO").val("");
+        $("#HATAID").val("");
+        $("#MSIPARIS_NO").val(SIP);
+        $("#MBOBINNO").val(BOB);
+        $("#HATAID").val(HATID);
+    });
+</script>
+@section scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Sipbul").click(function () {
+                var FISNO = $("#txt1").val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/EsnekLaminasyon/Sipbul/' + FISNO,
+                    dataType: 'json',
+                    data: { FISNO: $("#txt1").val() },
+                    success: function (data) {
+                        $("#skod_txt").val(data.STOK_KODU)
+                        $("#sad_txt").val(data.STOK_ADI);
+                    },
+                    error: function (hata, ajaxOptions, thrownError) {
+                        alert("Sipariş bulunamadı...");
+                    }
+                });
+            });
+        });
+    </script>
+}

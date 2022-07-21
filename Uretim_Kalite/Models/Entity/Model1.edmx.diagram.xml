@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="73fc2189b98e404e8b25b518e85934ad" Name="Diagram1" ZoomLevel="51">
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_ESNEK_DILIMLEME_KALITE" Width="1.5" PointX="0.875" PointY="0.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_ESNEK_LAMINASYON_KALITE" Width="1.5" PointX="3.375" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_GRAVUR_KALITE" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_OFSET_BASKI_KALITE" Width="1.5" PointX="10.375" PointY="0.875" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_OFSET_BITIRME_KALITE" Width="1.5" PointX="6.625" PointY="0.875" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_ESNEK_BASKI_KALITE" Width="1.5" PointX="0.875" PointY="5" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_GRAVUR_KALITE_SIPARIS" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_KALITE_USER" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_KALITE_PERSONEL" Width="1.5" PointX="4.125" PointY="6" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

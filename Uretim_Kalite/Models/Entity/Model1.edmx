@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EGEM2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EGEM_ESNEK_BASKI_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUN_KODU" Type="nvarchar" MaxLength="50" />
+          <Property Name="URUN_ADI" Type="nvarchar(max)" />
+          <Property Name="SIPARIS_NO" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZAMAN" Type="smalldatetime" />
+          <Property Name="BOBIN_NO" Type="int" />
+          <Property Name="HAMMADDE_KONTROL" Type="nvarchar(max)" />
+          <Property Name="BOBIN_ENI" Type="nvarchar(max)" />
+          <Property Name="FOTOSEL_ARALIGI" Type="nvarchar(max)" />
+          <Property Name="NET_BASKI_ENI" Type="nvarchar(max)" />
+          <Property Name="BASKI_YONU" Type="nvarchar(max)" />
+          <Property Name="FILM_TIPI" Type="nvarchar(max)" />
+          <Property Name="BARKOD_OKUNUR" Type="nvarchar(max)" />
+          <Property Name="ACILIS_YONU" Type="nvarchar(max)" />
+          <Property Name="ARKA_KAPANMA_SEKLI" Type="nvarchar(max)" />
+          <Property Name="ICERIK_KONTROL" Type="nvarchar(max)" />
+          <Property Name="RENK_UYGUN" Type="nvarchar(max)" />
+          <Property Name="RENK_UYGUN_GOZ" Type="nvarchar(max)" />
+          <Property Name="BASKI_KAYIK" Type="nvarchar(max)" />
+          <Property Name="GORSEL_KONTROL" Type="nvarchar(max)" />
+          <Property Name="ADEZYON" Type="nvarchar(max)" />
+          <Property Name="KURUMA" Type="nvarchar(max)" />
+          <Property Name="TONLAMA" Type="nvarchar(max)" />
+          <Property Name="SAKAL" Type="nvarchar(max)" />
+          <Property Name="CIZGI" Type="nvarchar(max)" />
+          <Property Name="ISIL_YAPISMA" Type="nvarchar(max)" />
+          <Property Name="MUREKKEP_MIKTAR" Type="nvarchar(max)" />
+          <Property Name="BIRIM_AGIRLIK" Type="nvarchar(max)" />
+          <Property Name="COF" Type="nvarchar(max)" />
+          <Property Name="GC_TEST" Type="nvarchar(max)" />
+          <Property Name="BOBIN_ICBAYRAK_SAYI" Type="nvarchar(max)" />
+          <Property Name="MAKINE" Type="nvarchar(max)" />
+          <Property Name="KONTROL_ONAY" Type="nvarchar(max)" />
+          <Property Name="SILINDIR_KOD_KONTROL" Type="nvarchar(max)" />
+          <Property Name="GLOSS" Type="nvarchar(max)" />
+          <Property Name="NOK_GORSEL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIPARISNO" Type="nvarchar(max)" />
+          <Property Name="BOBINNO" Type="nvarchar(max)" />
+          <Property Name="HATA" Type="nvarchar(max)" />
+          <Property Name="IMAJ" Type="nvarchar(max)" />
+          <Property Name="ADRES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_ESNEK_DILIMLEME_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUN_KODU" Type="nvarchar" MaxLength="50" />
+          <Property Name="URUN_ADI" Type="nvarchar(max)" />
+          <Property Name="SIPARIS_NO" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZAMAN" Type="smalldatetime" />
+          <Property Name="BOBIN_NO" Type="int" />
+          <Property Name="DILME_ENI" Type="nvarchar(max)" />
+          <Property Name="FOTOSEL_ARALIGI" Type="nvarchar(max)" />
+          <Property Name="ACILIS_YONU" Type="nvarchar(max)" />
+          <Property Name="IC_CAP" Type="nvarchar(max)" />
+          <Property Name="EK_SAYI" Type="nvarchar(max)" />
+          <Property Name="BOBIN_CAP" Type="nvarchar(max)" />
+          <Property Name="GORSEL_KONTROL" Type="nvarchar(max)" />
+          <Property Name="KESIM_KAYIK" Type="nvarchar(max)" />
+          <Property Name="TONLAMA" Type="nvarchar(max)" />
+          <Property Name="SAKAL" Type="nvarchar(max)" />
+          <Property Name="CIZGI" Type="nvarchar(max)" />
+          <Property Name="RENK_UYGUN" Type="nvarchar(max)" />
+          <Property Name="SARIM_DUZGUN" Type="nvarchar(max)" />
+          <Property Name="BOBIN_EKI_KONTROL" Type="nvarchar(max)" />
+          <Property Name="BOBIN_BARKOD_OKUT" Type="nvarchar(max)" />
+          <Property Name="BARKOD_KONTROL" Type="nvarchar(max)" />
+          <Property Name="KALITE_ONAY" Type="nvarchar(max)" />
+          <Property Name="MAKINE" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_ESNEK_LAMINASYON_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUN_KODU" Type="nvarchar" MaxLength="50" />
+          <Property Name="URUN_ADI" Type="nvarchar(max)" />
+          <Property Name="SIPARIS_NO" Type="nvarchar" MaxLength="50" />
+          <Property Name="MAKINE" Type="nvarchar(max)" />
+          <Property Name="ZAMAN" Type="smalldatetime" />
+          <Property Name="BOBIN_NO" Type="int" />
+          <Property Name="BOBIN_ENI" Type="nvarchar(max)" />
+          <Property Name="FOTOSEL_ARALIGI" Type="nvarchar(max)" />
+          <Property Name="AL_FOLYO_YONU" Type="nvarchar(max)" />
+          <Property Name="TUTKAL_GRAMAJ" Type="nvarchar(max)" />
+          <Property Name="BIRIM_AGIRLIK" Type="nvarchar(max)" />
+          <Property Name="YAPISMA_KONTROL" Type="nvarchar(max)" />
+          <Property Name="GORSEL_KONTROL" Type="nvarchar(max)" />
+          <Property Name="BENCIK_KONTROL" Type="nvarchar(max)" />
+          <Property Name="ISIL_YAPISMA_KONT" Type="nvarchar(max)" />
+          <Property Name="LAMINASYON_KUVVETI" Type="nvarchar(max)" />
+          <Property Name="COF_TEST" Type="nvarchar(max)" />
+          <Property Name="KALITE_ONAY" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_GRAVUR_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urun_kodu" Type="nvarchar" MaxLength="100" />
+          <Property Name="urun_adi" Type="nvarchar" MaxLength="250" />
+          <Property Name="sipno" Type="nvarchar" MaxLength="100" />
+          <Property Name="tarih" Type="nvarchar" MaxLength="50" />
+          <Property Name="saat" Type="nvarchar" MaxLength="50" />
+          <Property Name="palet_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="hammadde_kontrol" Type="nvarchar(max)" />
+          <Property Name="hammadde_fiziki" Type="nvarchar(max)" />
+          <Property Name="silindir_kod_kontrol" Type="nvarchar(max)" />
+          <Property Name="baski_icerik" Type="nvarchar(max)" />
+          <Property Name="baski_register" Type="nvarchar(max)" />
+          <Property Name="onay_num_renk_gorsel" Type="nvarchar(max)" />
+          <Property Name="onay_num_renk_spectro" Type="nvarchar(max)" />
+          <Property Name="yelpaze_renk_kont" Type="nvarchar(max)" />
+          <Property Name="barkod_okut" Type="nvarchar(max)" />
+          <Property Name="isil_yapis_kont" Type="nvarchar(max)" />
+          <Property Name="parlaklik" Type="nvarchar(max)" />
+          <Property Name="cof_test_dinamik" Type="nvarchar(max)" />
+          <Property Name="cof_test_statik" Type="nvarchar(max)" />
+          <Property Name="asinma_test" Type="nvarchar(max)" />
+          <Property Name="baski_hata" Type="nvarchar(max)" />
+          <Property Name="silindir_vuruk" Type="nvarchar(max)" />
+          <Property Name="lak_kuruma" Type="nvarchar(max)" />
+          <Property Name="bicak_film" Type="nvarchar(max)" />
+          <Property Name="kesim_gorsel" Type="nvarchar(max)" />
+          <Property Name="kesim_ebat" Type="nvarchar(max)" />
+          <Property Name="tabaka_hasar" Type="nvarchar(max)" />
+          <Property Name="montaj_pilyaj" Type="nvarchar(max)" />
+          <Property Name="kirim_direnc" Type="nvarchar(max)" />
+          <Property Name="kutu_yapisma" Type="nvarchar(max)" />
+          <Property Name="emdeb_gorsel" Type="nvarchar(max)" />
+          <Property Name="emdeb_register" Type="nvarchar(max)" />
+          <Property Name="emdeb_kontrol" Type="nvarchar(max)" />
+          <Property Name="kulakcik_katlan" Type="nvarchar(max)" />
+          <Property Name="palet_etiket" Type="nvarchar(max)" />
+          <Property Name="kontrol_onay" Type="nvarchar(max)" />
+          <Property Name="bobin_patlak" Type="nvarchar(max)" />
+          <Property Name="MAKINE" Type="nvarchar(max)" />
+          <Property Name="yedek" Type="nvarchar(max)" />
+          <Property Name="zaman" Type="smalldatetime" />
+          <Property Name="bundle_yuksek" Type="nvarchar(max)" />
+          <Property Name="hammadde_oba" Type="nvarchar(max)" />
+          <Property Name="palet_yerlesim" Type="nvarchar(max)" />
+          <Property Name="palet_gorsel" Type="nvarchar(max)" />
+          <Property Name="hammadde_gorsel_kontrol" Type="nvarchar(max)" />
+          <Property Name="makine_temiz_renk" Type="nvarchar(max)" />
+          <Property Name="kirpinti_kontrol" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_KALITE_PERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADSOYAD" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EGEM2022.dbo.EGEM_KALITE_USER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EGEM_KALITE_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD_SOYAD" Type="nvarchar(max)" />
+          <Property Name="SIFRE" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_OFSET_BASKI_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIPARISNO" Type="nvarchar" MaxLength="50" />
+          <Property Name="STOK_KODU" Type="nvarchar" MaxLength="50" />
+          <Property Name="STOK_ADI" Type="nvarchar" MaxLength="100" />
+          <Property Name="PROSES" Type="nchar" MaxLength="50" />
+          <Property Name="TARIH" Type="nvarchar" MaxLength="50" />
+          <Property Name="SAAT" Type="nvarchar" MaxLength="50" />
+          <Property Name="CALISILAN_MKN" Type="nvarchar" MaxLength="50" />
+          <Property Name="URUN_ADI_KNT" Type="nvarchar" MaxLength="50" />
+          <Property Name="PALET_NO" Type="nvarchar(max)" />
+          <Property Name="HAMMADDE_KONTROL" Type="nvarchar(max)" />
+          <Property Name="GRAMAJ_KONTROL" Type="nvarchar(max)" />
+          <Property Name="EBAT_KONTROL" Type="nvarchar(max)" />
+          <Property Name="CAPRAZ_KONTROL" Type="nvarchar(max)" />
+          <Property Name="YELPAZE_KONTROL" Type="nvarchar(max)" />
+          <Property Name="YAPISMA_KONTROL" Type="nvarchar(max)" />
+          <Property Name="SU_YOLU_KONTROL" Type="nvarchar(max)" />
+          <Property Name="MUREKKEP_KONTROL" Type="nvarchar(max)" />
+          <Property Name="ARTWORK_UYGUNLUK" Type="nvarchar(max)" />
+          <Property Name="BICAK_KONTROL" Type="nvarchar(max)" />
+          <Property Name="POZA_KONTROL" Type="nvarchar(max)" />
+          <Property Name="TONLAMA_SAKAL_KONTROL" Type="nvarchar(max)" />
+          <Property Name="GORSEL_KONTROL" Type="nvarchar(max)" />
+          <Property Name="LAK_BOS_KONTROL" Type="nvarchar(max)" />
+          <Property Name="LAK_AL_KONTROL" Type="nvarchar(max)" />
+          <Property Name="PARLAKLIK" Type="nvarchar(max)" />
+          <Property Name="ASINMA" Type="nvarchar(max)" />
+          <Property Name="COF_KINETIK_TEST" Type="nvarchar(max)" />
+          <Property Name="COF_STATIK_TEST" Type="nvarchar(max)" />
+          <Property Name="ISIL_YAPISMA" Type="nvarchar(max)" />
+          <Property Name="RENK_KONTROL" Type="nvarchar(max)" />
+          <Property Name="BARKOD_KONTROL" Type="nvarchar(max)" />
+          <Property Name="ASETAT_KONTROL" Type="nvarchar(max)" />
+          <Property Name="KORONA_YONU" Type="nvarchar(max)" />
+          <Property Name="SILIKONLU_BANT" Type="nvarchar(max)" />
+          <Property Name="KONTROL_EDEN" Type="nvarchar(max)" />
+          <Property Name="ACIKLAMA" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_OFSET_BITIRME_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIPARISNO" Type="nvarchar" MaxLength="50" />
+          <Property Name="STOK_KODU" Type="nvarchar" MaxLength="50" />
+          <Property Name="STOK_ADI" Type="nvarchar" MaxLength="100" />
+          <Property Name="PROSES" Type="nchar" MaxLength="50" />
+          <Property Name="TARIH" Type="nvarchar" MaxLength="50" />
+          <Property Name="SAAT" Type="nvarchar" MaxLength="50" />
+          <Property Name="CALISILAN_MKN" Type="nvarchar" MaxLength="50" />
+          <Property Name="URUN_ADI_KNT" Type="nvarchar" MaxLength="50" />
+          <Property Name="PALET_NO" Type="nvarchar(max)" />
+          <Property Name="HAMMADDE_KONTROL" Type="nvarchar" MaxLength="50" />
+          <Property Name="SU_YOLU" Type="nvarchar" MaxLength="50" />
+          <Property Name="ARTWORK_UYGUNLUK" Type="nvarchar" MaxLength="50" />
+          <Property Name="BICAK_FILM_KONTROL" Type="nvarchar" MaxLength="50" />
+          <Property Name="GORSEL_KONTROL" Type="nvarchar" MaxLength="50" />
+          <Property Name="BARKOD_KONTROL" Type="nvarchar" MaxLength="50" />
+          <Property Name="PILYAJ_KONTROL" Type="nvarchar" MaxLength="50" />
+          <Property Name="KASIM_PATLATMA" Type="nvarchar" MaxLength="50" />
+          <Property Name="KIRIM_DIRENCI" Type="nvarchar" MaxLength="50" />
+          <Property Name="NIK_YERLERI_KONTROL" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMBOSS_DEBOSS_KONTROL" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMBOSS_DEBOSS_REGISTER" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMBOSS_DEBOSS_KONTROL2" Type="nvarchar" MaxLength="50" />
+          <Property Name="TUM_PZS_KONT" Type="nvarchar" MaxLength="50" />
+          <Property Name="TS_UYGUNLUK" Type="nvarchar" MaxLength="50" />
+          <Property Name="PALET_GENEL_KONT" Type="nvarchar" MaxLength="50" />
+          <Property Name="ACIKLAMA" Type="nvarchar(max)" />
+          <Property Name="KONTROL_EDEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="BUNDLE_YUKSEK" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EGEM_GRAVUR_KALITE_SIPARIS">
+          <Key>
+            <PropertyRef Name="FISNO" />
+            <PropertyRef Name="STOK_KODU" />
+          </Key>
+          <Property Name="FISNO" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="STOK_KODU" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="STOK_ADI" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="EGEM2021ModelStoreContainer">
+          <EntitySet Name="EGEM_ESNEK_BASKI_KALITE" EntityType="Self.EGEM_ESNEK_BASKI_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ" EntityType="Self.EGEM_ESNEK_BASKI_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_ESNEK_DILIMLEME_KALITE" EntityType="Self.EGEM_ESNEK_DILIMLEME_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_ESNEK_LAMINASYON_KALITE" EntityType="Self.EGEM_ESNEK_LAMINASYON_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_GRAVUR_KALITE" EntityType="Self.EGEM_GRAVUR_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_KALITE_PERSONEL" EntityType="Self.EGEM_KALITE_PERSONEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_OFSET_BASKI_KALITE" EntityType="Self.EGEM_OFSET_BASKI_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_OFSET_BITIRME_KALITE" EntityType="Self.EGEM_OFSET_BITIRME_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_KALITE_USER" EntityType="Self.EGEM_KALITE_USER" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EGEM_KALITE_USER].[ID] AS [ID], 
+    [EGEM_KALITE_USER].[AD_SOYAD] AS [AD_SOYAD], 
+    [EGEM_KALITE_USER].[SIFRE] AS [SIFRE]
+    FROM [dbo].[EGEM_KALITE_USER] AS [EGEM_KALITE_USER]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EGEM_GRAVUR_KALITE_SIPARIS" EntityType="Self.EGEM_GRAVUR_KALITE_SIPARIS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EGEM_GRAVUR_KALITE_SIPARIS].[FISNO] AS [FISNO], 
+    [EGEM_GRAVUR_KALITE_SIPARIS].[STOK_KODU] AS [STOK_KODU], 
+    [EGEM_GRAVUR_KALITE_SIPARIS].[STOK_ADI] AS [STOK_ADI]
+    FROM [dbo].[EGEM_GRAVUR_KALITE_SIPARIS] AS [EGEM_GRAVUR_KALITE_SIPARIS]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EGEM2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EGEM_ESNEK_DILIMLEME_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUN_KODU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="URUN_ADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIPARIS_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZAMAN" Type="DateTime" Precision="0" />
+          <Property Name="BOBIN_NO" Type="Int32" />
+          <Property Name="DILME_ENI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FOTOSEL_ARALIGI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ACILIS_YONU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IC_CAP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EK_SAYI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBIN_CAP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GORSEL_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KESIM_KAYIK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TONLAMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SAKAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CIZGI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RENK_UYGUN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SARIM_DUZGUN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBIN_EKI_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBIN_BARKOD_OKUT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BARKOD_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KALITE_ONAY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MAKINE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_ESNEK_LAMINASYON_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUN_KODU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="URUN_ADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIPARIS_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MAKINE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZAMAN" Type="DateTime" Precision="0" />
+          <Property Name="BOBIN_NO" Type="Int32" />
+          <Property Name="BOBIN_ENI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FOTOSEL_ARALIGI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AL_FOLYO_YONU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TUTKAL_GRAMAJ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BIRIM_AGIRLIK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YAPISMA_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GORSEL_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BENCIK_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ISIL_YAPISMA_KONT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LAMINASYON_KUVVETI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COF_TEST" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KALITE_ONAY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="EGEM2021Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EGEM_ESNEK_DILIMLEME_KALITE" EntityType="Self.EGEM_ESNEK_DILIMLEME_KALITE" />
+          <EntitySet Name="EGEM_ESNEK_LAMINASYON_KALITE" EntityType="Self.EGEM_ESNEK_LAMINASYON_KALITE" />
+          <EntitySet Name="EGEM_GRAVUR_KALITE" EntityType="EGEM2021Model.EGEM_GRAVUR_KALITE" />
+          <EntitySet Name="EGEM_OFSET_BASKI_KALITE" EntityType="EGEM2021Model.EGEM_OFSET_BASKI_KALITE" />
+          <EntitySet Name="EGEM_OFSET_BITIRME_KALITE" EntityType="EGEM2021Model.EGEM_OFSET_BITIRME_KALITE" />
+          <EntitySet Name="EGEM_ESNEK_BASKI_KALITE" EntityType="EGEM2021Model.EGEM_ESNEK_BASKI_KALITE" />
+          <EntitySet Name="EGEM_GRAVUR_KALITE_SIPARIS" EntityType="EGEM2021Model.EGEM_GRAVUR_KALITE_SIPARIS" />
+          <EntitySet Name="EGEM_KALITE_USER" EntityType="EGEM2021Model.EGEM_KALITE_USER" />
+          <EntitySet Name="EGEM_KALITE_PERSONEL" EntityType="EGEM2021Model.EGEM_KALITE_PERSONEL" />
+          <EntitySet Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ" EntityType="EGEM2021Model.EGEM_ESNEK_BASKI_KALITENOKIMAJ" />
+        </EntityContainer>
+        <EntityType Name="EGEM_GRAVUR_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urun_kodu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="urun_adi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="sipno" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="tarih" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="saat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="palet_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hammadde_kontrol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hammadde_fiziki" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="silindir_kod_kontrol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="baski_icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="baski_register" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="onay_num_renk_gorsel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="onay_num_renk_spectro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="yelpaze_renk_kont" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="barkod_okut" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isil_yapis_kont" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="parlaklik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cof_test_dinamik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cof_test_statik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="asinma_test" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="baski_hata" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="silindir_vuruk" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="lak_kuruma" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="bicak_film" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kesim_gorsel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kesim_ebat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tabaka_hasar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="montaj_pilyaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kirim_direnc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kutu_yapisma" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="emdeb_gorsel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="emdeb_register" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="emdeb_kontrol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kulakcik_katlan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="palet_etiket" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kontrol_onay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="bobin_patlak" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MAKINE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="yedek" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="zaman" Type="DateTime" Precision="0" />
+          <Property Name="bundle_yuksek" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hammadde_oba" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="palet_yerlesim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="palet_gorsel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hammadde_gorsel_kontrol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="makine_temiz_renk" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kirpinti_kontrol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_OFSET_BASKI_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIPARISNO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STOK_KODU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STOK_ADI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PROSES" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="TARIH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SAAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CALISILAN_MKN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="URUN_ADI_KNT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PALET_NO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HAMMADDE_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GRAMAJ_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EBAT_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CAPRAZ_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YELPAZE_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YAPISMA_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SU_YOLU_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MUREKKEP_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ARTWORK_UYGUNLUK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BICAK_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="POZA_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TONLAMA_SAKAL_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GORSEL_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LAK_BOS_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LAK_AL_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PARLAKLIK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ASINMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COF_KINETIK_TEST" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COF_STATIK_TEST" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ISIL_YAPISMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RENK_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BARKOD_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ASETAT_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KORONA_YONU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SILIKONLU_BANT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KONTROL_EDEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ACIKLAMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_OFSET_BITIRME_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIPARISNO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STOK_KODU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STOK_ADI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PROSES" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="TARIH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SAAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CALISILAN_MKN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="URUN_ADI_KNT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PALET_NO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HAMMADDE_KONTROL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SU_YOLU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ARTWORK_UYGUNLUK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BICAK_FILM_KONTROL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GORSEL_KONTROL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BARKOD_KONTROL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PILYAJ_KONTROL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KASIM_PATLATMA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KIRIM_DIRENCI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NIK_YERLERI_KONTROL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMBOSS_DEBOSS_KONTROL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMBOSS_DEBOSS_REGISTER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMBOSS_DEBOSS_KONTROL2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TUM_PZS_KONT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TS_UYGUNLUK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PALET_GENEL_KONT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ACIKLAMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KONTROL_EDEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BUNDLE_YUKSEK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_ESNEK_BASKI_KALITE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUN_KODU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="URUN_ADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIPARIS_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZAMAN" Type="DateTime" Precision="0" />
+          <Property Name="BOBIN_NO" Type="Int32" />
+          <Property Name="HAMMADDE_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBIN_ENI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FOTOSEL_ARALIGI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NET_BASKI_ENI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BASKI_YONU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FILM_TIPI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BARKOD_OKUNUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ACILIS_YONU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ARKA_KAPANMA_SEKLI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ICERIK_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RENK_UYGUN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RENK_UYGUN_GOZ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BASKI_KAYIK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GORSEL_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADEZYON" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KURUMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TONLAMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SAKAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CIZGI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ISIL_YAPISMA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MUREKKEP_MIKTAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BIRIM_AGIRLIK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GC_TEST" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBIN_ICBAYRAK_SAYI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MAKINE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KONTROL_ONAY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SILINDIR_KOD_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GLOSS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NOK_GORSEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_GRAVUR_KALITE_SIPARIS">
+          <Key>
+            <PropertyRef Name="FISNO" />
+            <PropertyRef Name="STOK_KODU" />
+          </Key>
+          <Property Name="FISNO" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="STOK_KODU" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="STOK_ADI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EGEM_KALITE_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD_SOYAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SIFRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_KALITE_PERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADSOYAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIPARISNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBINNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAJ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EGEM2021ModelStoreContainer" CdmEntityContainer="EGEM2021Entities1">
+          <EntitySetMapping Name="EGEM_ESNEK_DILIMLEME_KALITE">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_ESNEK_DILIMLEME_KALITE">
+              <MappingFragment StoreEntitySet="EGEM_ESNEK_DILIMLEME_KALITE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="URUN_KODU" ColumnName="URUN_KODU" />
+                <ScalarProperty Name="URUN_ADI" ColumnName="URUN_ADI" />
+                <ScalarProperty Name="SIPARIS_NO" ColumnName="SIPARIS_NO" />
+                <ScalarProperty Name="ZAMAN" ColumnName="ZAMAN" />
+                <ScalarProperty Name="BOBIN_NO" ColumnName="BOBIN_NO" />
+                <ScalarProperty Name="DILME_ENI" ColumnName="DILME_ENI" />
+                <ScalarProperty Name="FOTOSEL_ARALIGI" ColumnName="FOTOSEL_ARALIGI" />
+                <ScalarProperty Name="ACILIS_YONU" ColumnName="ACILIS_YONU" />
+                <ScalarProperty Name="IC_CAP" ColumnName="IC_CAP" />
+                <ScalarProperty Name="EK_SAYI" ColumnName="EK_SAYI" />
+                <ScalarProperty Name="BOBIN_CAP" ColumnName="BOBIN_CAP" />
+                <ScalarProperty Name="GORSEL_KONTROL" ColumnName="GORSEL_KONTROL" />
+                <ScalarProperty Name="KESIM_KAYIK" ColumnName="KESIM_KAYIK" />
+                <ScalarProperty Name="TONLAMA" ColumnName="TONLAMA" />
+                <ScalarProperty Name="SAKAL" ColumnName="SAKAL" />
+                <ScalarProperty Name="CIZGI" ColumnName="CIZGI" />
+                <ScalarProperty Name="RENK_UYGUN" ColumnName="RENK_UYGUN" />
+                <ScalarProperty Name="SARIM_DUZGUN" ColumnName="SARIM_DUZGUN" />
+                <ScalarProperty Name="BOBIN_EKI_KONTROL" ColumnName="BOBIN_EKI_KONTROL" />
+                <ScalarProperty Name="BOBIN_BARKOD_OKUT" ColumnName="BOBIN_BARKOD_OKUT" />
+                <ScalarProperty Name="BARKOD_KONTROL" ColumnName="BARKOD_KONTROL" />
+                <ScalarProperty Name="KALITE_ONAY" ColumnName="KALITE_ONAY" />
+                <ScalarProperty Name="MAKINE" ColumnName="MAKINE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_ESNEK_LAMINASYON_KALITE">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_ESNEK_LAMINASYON_KALITE">
+              <MappingFragment StoreEntitySet="EGEM_ESNEK_LAMINASYON_KALITE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="URUN_KODU" ColumnName="URUN_KODU" />
+                <ScalarProperty Name="URUN_ADI" ColumnName="URUN_ADI" />
+                <ScalarProperty Name="SIPARIS_NO" ColumnName="SIPARIS_NO" />
+                <ScalarProperty Name="MAKINE" ColumnName="MAKINE" />
+                <ScalarProperty Name="ZAMAN" ColumnName="ZAMAN" />
+                <ScalarProperty Name="BOBIN_NO" ColumnName="BOBIN_NO" />
+                <ScalarProperty Name="BOBIN_ENI" ColumnName="BOBIN_ENI" />
+                <ScalarProperty Name="FOTOSEL_ARALIGI" ColumnName="FOTOSEL_ARALIGI" />
+                <ScalarProperty Name="AL_FOLYO_YONU" ColumnName="AL_FOLYO_YONU" />
+                <ScalarProperty Name="TUTKAL_GRAMAJ" ColumnName="TUTKAL_GRAMAJ" />
+                <ScalarProperty Name="BIRIM_AGIRLIK" ColumnName="BIRIM_AGIRLIK" />
+                <ScalarProperty Name="YAPISMA_KONTROL" ColumnName="YAPISMA_KONTROL" />
+                <ScalarProperty Name="GORSEL_KONTROL" ColumnName="GORSEL_KONTROL" />
+                <ScalarProperty Name="BENCIK_KONTROL" ColumnName="BENCIK_KONTROL" />
+                <ScalarProperty Name="ISIL_YAPISMA_KONT" ColumnName="ISIL_YAPISMA_KONT" />
+                <ScalarProperty Name="LAMINASYON_KUVVETI" ColumnName="LAMINASYON_KUVVETI" />
+                <ScalarProperty Name="COF_TEST" ColumnName="COF_TEST" />
+                <ScalarProperty Name="KALITE_ONAY" ColumnName="KALITE_ONAY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_GRAVUR_KALITE">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_GRAVUR_KALITE">
+              <MappingFragment StoreEntitySet="EGEM_GRAVUR_KALITE">
+                <ScalarProperty Name="kirpinti_kontrol" ColumnName="kirpinti_kontrol" />
+                <ScalarProperty Name="makine_temiz_renk" ColumnName="makine_temiz_renk" />
+                <ScalarProperty Name="hammadde_gorsel_kontrol" ColumnName="hammadde_gorsel_kontrol" />
+                <ScalarProperty Name="palet_gorsel" ColumnName="palet_gorsel" />
+                <ScalarProperty Name="palet_yerlesim" ColumnName="palet_yerlesim" />
+                <ScalarProperty Name="hammadde_oba" ColumnName="hammadde_oba" />
+                <ScalarProperty Name="bundle_yuksek" ColumnName="bundle_yuksek" />
+                <ScalarProperty Name="zaman" ColumnName="zaman" />
+                <ScalarProperty Name="yedek" ColumnName="yedek" />
+                <ScalarProperty Name="MAKINE" ColumnName="MAKINE" />
+                <ScalarProperty Name="bobin_patlak" ColumnName="bobin_patlak" />
+                <ScalarProperty Name="kontrol_onay" ColumnName="kontrol_onay" />
+                <ScalarProperty Name="palet_etiket" ColumnName="palet_etiket" />
+                <ScalarProperty Name="kulakcik_katlan" ColumnName="kulakcik_katlan" />
+                <ScalarProperty Name="emdeb_kontrol" ColumnName="emdeb_kontrol" />
+                <ScalarProperty Name="emdeb_register" ColumnName="emdeb_register" />
+                <ScalarProperty Name="emdeb_gorsel" ColumnName="emdeb_gorsel" />
+                <ScalarProperty Name="kutu_yapisma" ColumnName="kutu_yapisma" />
+                <ScalarProperty Name="kirim_direnc" ColumnName="kirim_direnc" />
+                <ScalarProperty Name="montaj_pilyaj" ColumnName="montaj_pilyaj" />
+                <ScalarProperty Name="tabaka_hasar" ColumnName="tabaka_hasar" />
+                <ScalarProperty Name="kesim_ebat" ColumnName="kesim_ebat" />
+                <ScalarProperty Name="kesim_gorsel" ColumnName="kesim_gorsel" />
+                <ScalarProperty Name="bicak_film" ColumnName="bicak_film" />
+                <ScalarProperty Name="lak_kuruma" ColumnName="lak_kuruma" />
+                <ScalarProperty Name="silindir_vuruk" ColumnName="silindir_vuruk" />
+                <ScalarProperty Name="baski_hata" ColumnName="baski_hata" />
+                <ScalarProperty Name="asinma_test" ColumnName="asinma_test" />
+                <ScalarProperty Name="cof_test_statik" ColumnName="cof_test_statik" />
+                <ScalarProperty Name="cof_test_dinamik" ColumnName="cof_test_dinamik" />
+                <ScalarProperty Name="parlaklik" ColumnName="parlaklik" />
+                <ScalarProperty Name="isil_yapis_kont" ColumnName="isil_yapis_kont" />
+                <ScalarProperty Name="barkod_okut" ColumnName="barkod_okut" />
+                <ScalarProperty Name="yelpaze_renk_kont" ColumnName="yelpaze_renk_kont" />
+                <ScalarProperty Name="onay_num_renk_spectro" ColumnName="onay_num_renk_spectro" />
+                <ScalarProperty Name="onay_num_renk_gorsel" ColumnName="onay_num_renk_gorsel" />
+                <ScalarProperty Name="baski_register" ColumnName="baski_register" />
+                <ScalarProperty Name="baski_icerik" ColumnName="baski_icerik" />
+                <ScalarProperty Name="silindir_kod_kontrol" ColumnName="silindir_kod_kontrol" />
+                <ScalarProperty Name="hammadde_fiziki" ColumnName="hammadde_fiziki" />
+                <ScalarProperty Name="hammadde_kontrol" ColumnName="hammadde_kontrol" />
+                <ScalarProperty Name="palet_no" ColumnName="palet_no" />
+                <ScalarProperty Name="saat" ColumnName="saat" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="sipno" ColumnName="sipno" />
+                <ScalarProperty Name="urun_adi" ColumnName="urun_adi" />
+                <ScalarProperty Name="urun_kodu" ColumnName="urun_kodu" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_OFSET_BASKI_KALITE">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_OFSET_BASKI_KALITE">
+              <MappingFragment StoreEntitySet="EGEM_OFSET_BASKI_KALITE">
+                <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+                <ScalarProperty Name="KONTROL_EDEN" ColumnName="KONTROL_EDEN" />
+                <ScalarProperty Name="SILIKONLU_BANT" ColumnName="SILIKONLU_BANT" />
+                <ScalarProperty Name="KORONA_YONU" ColumnName="KORONA_YONU" />
+                <ScalarProperty Name="ASETAT_KONTROL" ColumnName="ASETAT_KONTROL" />
+                <ScalarProperty Name="BARKOD_KONTROL" ColumnName="BARKOD_KONTROL" />
+                <ScalarProperty Name="RENK_KONTROL" ColumnName="RENK_KONTROL" />
+                <ScalarProperty Name="ISIL_YAPISMA" ColumnName="ISIL_YAPISMA" />
+                <ScalarProperty Name="COF_STATIK_TEST" ColumnName="COF_STATIK_TEST" />
+                <ScalarProperty Name="COF_KINETIK_TEST" ColumnName="COF_KINETIK_TEST" />
+                <ScalarProperty Name="ASINMA" ColumnName="ASINMA" />
+                <ScalarProperty Name="PARLAKLIK" ColumnName="PARLAKLIK" />
+                <ScalarProperty Name="LAK_AL_KONTROL" ColumnName="LAK_AL_KONTROL" />
+                <ScalarProperty Name="LAK_BOS_KONTROL" ColumnName="LAK_BOS_KONTROL" />
+                <ScalarProperty Name="GORSEL_KONTROL" ColumnName="GORSEL_KONTROL" />
+                <ScalarProperty Name="TONLAMA_SAKAL_KONTROL" ColumnName="TONLAMA_SAKAL_KONTROL" />
+                <ScalarProperty Name="POZA_KONTROL" ColumnName="POZA_KONTROL" />
+                <ScalarProperty Name="BICAK_KONTROL" ColumnName="BICAK_KONTROL" />
+                <ScalarProperty Name="ARTWORK_UYGUNLUK" ColumnName="ARTWORK_UYGUNLUK" />
+                <ScalarProperty Name="MUREKKEP_KONTROL" ColumnName="MUREKKEP_KONTROL" />
+                <ScalarProperty Name="SU_YOLU_KONTROL" ColumnName="SU_YOLU_KONTROL" />
+                <ScalarProperty Name="YAPISMA_KONTROL" ColumnName="YAPISMA_KONTROL" />
+                <ScalarProperty Name="YELPAZE_KONTROL" ColumnName="YELPAZE_KONTROL" />
+                <ScalarProperty Name="CAPRAZ_KONTROL" ColumnName="CAPRAZ_KONTROL" />
+                <ScalarProperty Name="EBAT_KONTROL" ColumnName="EBAT_KONTROL" />
+                <ScalarProperty Name="GRAMAJ_KONTROL" ColumnName="GRAMAJ_KONTROL" />
+                <ScalarProperty Name="HAMMADDE_KONTROL" ColumnName="HAMMADDE_KONTROL" />
+                <ScalarProperty Name="PALET_NO" ColumnName="PALET_NO" />
+                <ScalarProperty Name="URUN_ADI_KNT" ColumnName="URUN_ADI_KNT" />
+                <ScalarProperty Name="CALISILAN_MKN" ColumnName="CALISILAN_MKN" />
+                <ScalarProperty Name="SAAT" ColumnName="SAAT" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="PROSES" ColumnName="PROSES" />
+                <ScalarProperty Name="STOK_ADI" ColumnName="STOK_ADI" />
+                <ScalarProperty Name="STOK_KODU" ColumnName="STOK_KODU" />
+                <ScalarProperty Name="SIPARISNO" ColumnName="SIPARISNO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_OFSET_BITIRME_KALITE">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_OFSET_BITIRME_KALITE">
+              <MappingFragment StoreEntitySet="EGEM_OFSET_BITIRME_KALITE">
+                <ScalarProperty Name="BUNDLE_YUKSEK" ColumnName="BUNDLE_YUKSEK" />
+                <ScalarProperty Name="KONTROL_EDEN" ColumnName="KONTROL_EDEN" />
+                <ScalarProperty Name="ACIKLAMA" ColumnName="ACIKLAMA" />
+                <ScalarProperty Name="PALET_GENEL_KONT" ColumnName="PALET_GENEL_KONT" />
+                <ScalarProperty Name="TS_UYGUNLUK" ColumnName="TS_UYGUNLUK" />
+                <ScalarProperty Name="TUM_PZS_KONT" ColumnName="TUM_PZS_KONT" />
+                <ScalarProperty Name="EMBOSS_DEBOSS_KONTROL2" ColumnName="EMBOSS_DEBOSS_KONTROL2" />
+                <ScalarProperty Name="EMBOSS_DEBOSS_REGISTER" ColumnName="EMBOSS_DEBOSS_REGISTER" />
+                <ScalarProperty Name="EMBOSS_DEBOSS_KONTROL" ColumnName="EMBOSS_DEBOSS_KONTROL" />
+                <ScalarProperty Name="NIK_YERLERI_KONTROL" ColumnName="NIK_YERLERI_KONTROL" />
+                <ScalarProperty Name="KIRIM_DIRENCI" ColumnName="KIRIM_DIRENCI" />
+                <ScalarProperty Name="KASIM_PATLATMA" ColumnName="KASIM_PATLATMA" />
+                <ScalarProperty Name="PILYAJ_KONTROL" ColumnName="PILYAJ_KONTROL" />
+                <ScalarProperty Name="BARKOD_KONTROL" ColumnName="BARKOD_KONTROL" />
+                <ScalarProperty Name="GORSEL_KONTROL" ColumnName="GORSEL_KONTROL" />
+                <ScalarProperty Name="BICAK_FILM_KONTROL" ColumnName="BICAK_FILM_KONTROL" />
+                <ScalarProperty Name="ARTWORK_UYGUNLUK" ColumnName="ARTWORK_UYGUNLUK" />
+                <ScalarProperty Name="SU_YOLU" ColumnName="SU_YOLU" />
+                <ScalarProperty Name="HAMMADDE_KONTROL" ColumnName="HAMMADDE_KONTROL" />
+                <ScalarProperty Name="PALET_NO" ColumnName="PALET_NO" />
+                <ScalarProperty Name="URUN_ADI_KNT" ColumnName="URUN_ADI_KNT" />
+                <ScalarProperty Name="CALISILAN_MKN" ColumnName="CALISILAN_MKN" />
+                <ScalarProperty Name="SAAT" ColumnName="SAAT" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="PROSES" ColumnName="PROSES" />
+                <ScalarProperty Name="STOK_ADI" ColumnName="STOK_ADI" />
+                <ScalarProperty Name="STOK_KODU" ColumnName="STOK_KODU" />
+                <ScalarProperty Name="SIPARISNO" ColumnName="SIPARISNO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_ESNEK_BASKI_KALITE">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_ESNEK_BASKI_KALITE">
+              <MappingFragment StoreEntitySet="EGEM_ESNEK_BASKI_KALITE">
+                <ScalarProperty Name="NOK_GORSEL" ColumnName="NOK_GORSEL" />
+                <ScalarProperty Name="GLOSS" ColumnName="GLOSS" />
+                <ScalarProperty Name="SILINDIR_KOD_KONTROL" ColumnName="SILINDIR_KOD_KONTROL" />
+                <ScalarProperty Name="KONTROL_ONAY" ColumnName="KONTROL_ONAY" />
+                <ScalarProperty Name="MAKINE" ColumnName="MAKINE" />
+                <ScalarProperty Name="BOBIN_ICBAYRAK_SAYI" ColumnName="BOBIN_ICBAYRAK_SAYI" />
+                <ScalarProperty Name="GC_TEST" ColumnName="GC_TEST" />
+                <ScalarProperty Name="COF" ColumnName="COF" />
+                <ScalarProperty Name="BIRIM_AGIRLIK" ColumnName="BIRIM_AGIRLIK" />
+                <ScalarProperty Name="MUREKKEP_MIKTAR" ColumnName="MUREKKEP_MIKTAR" />
+                <ScalarProperty Name="ISIL_YAPISMA" ColumnName="ISIL_YAPISMA" />
+                <ScalarProperty Name="CIZGI" ColumnName="CIZGI" />
+                <ScalarProperty Name="SAKAL" ColumnName="SAKAL" />
+                <ScalarProperty Name="TONLAMA" ColumnName="TONLAMA" />
+                <ScalarProperty Name="KURUMA" ColumnName="KURUMA" />
+                <ScalarProperty Name="ADEZYON" ColumnName="ADEZYON" />
+                <ScalarProperty Name="GORSEL_KONTROL" ColumnName="GORSEL_KONTROL" />
+                <ScalarProperty Name="BASKI_KAYIK" ColumnName="BASKI_KAYIK" />
+                <ScalarProperty Name="RENK_UYGUN_GOZ" ColumnName="RENK_UYGUN_GOZ" />
+                <ScalarProperty Name="RENK_UYGUN" ColumnName="RENK_UYGUN" />
+                <ScalarProperty Name="ICERIK_KONTROL" ColumnName="ICERIK_KONTROL" />
+                <ScalarProperty Name="ARKA_KAPANMA_SEKLI" ColumnName="ARKA_KAPANMA_SEKLI" />
+                <ScalarProperty Name="ACILIS_YONU" ColumnName="ACILIS_YONU" />
+                <ScalarProperty Name="BARKOD_OKUNUR" ColumnName="BARKOD_OKUNUR" />
+                <ScalarProperty Name="FILM_TIPI" ColumnName="FILM_TIPI" />
+                <ScalarProperty Name="BASKI_YONU" ColumnName="BASKI_YONU" />
+                <ScalarProperty Name="NET_BASKI_ENI" ColumnName="NET_BASKI_ENI" />
+                <ScalarProperty Name="FOTOSEL_ARALIGI" ColumnName="FOTOSEL_ARALIGI" />
+                <ScalarProperty Name="BOBIN_ENI" ColumnName="BOBIN_ENI" />
+                <ScalarProperty Name="HAMMADDE_KONTROL" ColumnName="HAMMADDE_KONTROL" />
+                <ScalarProperty Name="BOBIN_NO" ColumnName="BOBIN_NO" />
+                <ScalarProperty Name="ZAMAN" ColumnName="ZAMAN" />
+                <ScalarProperty Name="SIPARIS_NO" ColumnName="SIPARIS_NO" />
+                <ScalarProperty Name="URUN_ADI" ColumnName="URUN_ADI" />
+                <ScalarProperty Name="URUN_KODU" ColumnName="URUN_KODU" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_GRAVUR_KALITE_SIPARIS">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_GRAVUR_KALITE_SIPARIS">
+              <MappingFragment StoreEntitySet="EGEM_GRAVUR_KALITE_SIPARIS">
+                <ScalarProperty Name="STOK_ADI" ColumnName="STOK_ADI" />
+                <ScalarProperty Name="STOK_KODU" ColumnName="STOK_KODU" />
+                <ScalarProperty Name="FISNO" ColumnName="FISNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_KALITE_USER">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_KALITE_USER">
+              <MappingFragment StoreEntitySet="EGEM_KALITE_USER">
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+                <ScalarProperty Name="AD_SOYAD" ColumnName="AD_SOYAD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_KALITE_PERSONEL">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_KALITE_PERSONEL">
+              <MappingFragment StoreEntitySet="EGEM_KALITE_PERSONEL">
+                <ScalarProperty Name="ADSOYAD" ColumnName="ADSOYAD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_ESNEK_BASKI_KALITENOKIMAJ">
+              <MappingFragment StoreEntitySet="EGEM_ESNEK_BASKI_KALITENOKIMAJ">
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="IMAJ" ColumnName="IMAJ" />
+                <ScalarProperty Name="HATA" ColumnName="HATA" />
+                <ScalarProperty Name="BOBINNO" ColumnName="BOBINNO" />
+                <ScalarProperty Name="SIPARISNO" ColumnName="SIPARISNO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="4f1477d6dd254f89adfa0b566ecef465" Name="Diagram1">
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_ESNEK_DILIMLEME_KALITE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_ESNEK_LAMINASYON_KALITE" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_GRAVUR_KALITE" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_OFSET_BASKI_KALITE" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_OFSET_BITIRME_KALITE" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_ESNEK_BASKI_KALITE" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_GRAVUR_KALITE_SIPARIS" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_KALITE_USER" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_KALITE_PERSONEL" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
