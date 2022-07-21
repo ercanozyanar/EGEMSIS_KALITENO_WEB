@@ -23,6 +23,7 @@ namespace Uretim_Kalite.Controllers
         EGEM2021Entities1 db = new EGEM2021Entities1();
         SqlConnection conn1 = new SqlConnection("Data Source=192.168.0.251;Initial Catalog=EGEM2022;Persist Security Info=True;User ID=egem;Password=123456");
         public static string adi;
+        public static string fname;
         SqlCommand komut = new SqlCommand();
         public ActionResult Baskilist(int sayfa = 1)
         {
@@ -95,7 +96,7 @@ namespace Uretim_Kalite.Controllers
            try
             {
                 var senderEmail = new MailAddress("bilgi@egemambalaj.com.tr", "Egemsis");
-                var receiverEmail = new MailAddress("ercan.ozyanar@egemambalaj.com.tr", "Receiver");
+                var receiverEmail = new MailAddress("ercan.ozyanar@egemambalaj.com.tr");
                 var password = "Zug81146";
                 var subject = "SIPARIS NO : " + MSIPARIS_NO + " " + " PALET NO :" + MBOBINNO + " " + " Esnek Baski Kalite Hata";
                 var body = "SIPARIS NO : " + MSIPARIS_NO + " " + " PALET NO :" + MBOBINNO + " " + " TARIH :" + DateTime.Now + " HATA BILDIRIMI :" + MHATA;
@@ -108,17 +109,25 @@ namespace Uretim_Kalite.Controllers
                     UseDefaultCredentials = false,
                     Credentials = new NetworkCredential(senderEmail.Address, password)
                 };
+
+
                 using (var mess = new MailMessage(senderEmail, receiverEmail)
+
                 {
                     Subject = subject,
                     Body = body
-                })
 
-                
+                })
+                    
+                {
+                    mess.Attachments.Add(new Attachment(fname));
+                    smtp.Send(mess);
+                }
+
                 komut.CommandText = "INSERT INTO EGEM_ESNEK_BASKI_KALITENOKIMAJ (SIPARISNO,BOBINNO,HATA,IMAJ,ADRES) VALUES (@MSIPARIS_NO,@MBOBINNO,@MHATA,@IMAJ,@ADRES)";
                 komut.Connection = conn1;
                 komut.CommandType = CommandType.Text;
-               conn1.Open();
+                conn1.Open();
                 komut.Parameters.Add("@MSIPARIS_NO", MSIPARIS_NO);
                 komut.Parameters.Add("@MBOBINNO", MBOBINNO);
                 komut.Parameters.Add("@MHATA", MHATA);
@@ -126,8 +135,6 @@ namespace Uretim_Kalite.Controllers
                 komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ESNEK_NOK_IMAJ" + adi + "_" + MIMAJ);
                 komut.ExecuteReader();
                 conn1.Close();
-
-
                 return View();
            }
             catch (Exception)
@@ -144,7 +151,7 @@ namespace Uretim_Kalite.Controllers
 
         }
         [HttpPost]
-        public JsonResult DosyaYukle()/*(string MSIPNO)*/
+        public JsonResult DosyaYukle()
         {
             if (Request.Files.Count > 0)
             {
@@ -154,7 +161,7 @@ namespace Uretim_Kalite.Controllers
                     for (int i = 0; i < files.Count; i++)
                     {
                         HttpPostedFileBase file = files[i];
-                        string fname;
+                        //string fname;
                         if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
                         {
                             string[] testfiles = file.FileName.Split(new char[] { '\\' });
@@ -163,7 +170,7 @@ namespace Uretim_Kalite.Controllers
                         else
                         {
                             string dosyaadi = DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_" + DateTime.Now.Second.ToString();
-                             string fileName = System.IO.Path.GetFileName(file.FileName);
+                            string fileName = System.IO.Path.GetFileName(file.FileName);
                             fname = Path.Combine(("//192.168.0.252//ESNEK_NOK_IMAJ"),dosyaadi +"_"+ fileName);
                             file.SaveAs(fname);
                             adi = dosyaadi;
