@@ -45,6 +45,7 @@
           <Property Name="SILINDIR_KOD_KONTROL" Type="nvarchar(max)" />
           <Property Name="GLOSS" Type="nvarchar(max)" />
           <Property Name="NOK_GORSEL" Type="nvarchar(max)" />
+          <Property Name="GORSEL_ADRES" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ">
           <Key>
@@ -529,6 +530,7 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <Property Name="SILINDIR_KOD_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="GLOSS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NOK_GORSEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GORSEL_ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EGEM_GRAVUR_KALITE_SIPARIS">
           <Key>
@@ -761,6 +763,7 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <EntitySetMapping Name="EGEM_ESNEK_BASKI_KALITE">
             <EntityTypeMapping TypeName="EGEM2021Model.EGEM_ESNEK_BASKI_KALITE">
               <MappingFragment StoreEntitySet="EGEM_ESNEK_BASKI_KALITE">
+                <ScalarProperty Name="GORSEL_ADRES" ColumnName="GORSEL_ADRES" />
                 <ScalarProperty Name="NOK_GORSEL" ColumnName="NOK_GORSEL" />
                 <ScalarProperty Name="GLOSS" ColumnName="GLOSS" />
                 <ScalarProperty Name="SILINDIR_KOD_KONTROL" ColumnName="SILINDIR_KOD_KONTROL" />

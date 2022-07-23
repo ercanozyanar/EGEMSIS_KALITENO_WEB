@@ -50,5 +50,6 @@ namespace Uretim_Kalite.Models.Entity
         public string SILINDIR_KOD_KONTROL { get; set; }
         public string GLOSS { get; set; }
         public string NOK_GORSEL { get; set; }
+        public string GORSEL_ADRES { get; set; }
     }
 }

@@ -19,7 +19,11 @@ namespace Uretim_Kalite.Controllers
     public class OfsetBaskiController : Controller
     {
         EGEM2021Entities1 db = new EGEM2021Entities1();
-        SqlConnection conn1 = new SqlConnection("Data Source=192.168.0.251;Initial Catalog=EGEM2021;Persist Security Info=True;User ID=egem;Password=123456");
+        SqlConnection conn1 = new SqlConnection("Data Source=192.168.0.251;Initial Catalog=EGEM2022;Persist Security Info=True;User ID=egem;Password=123456");
+        public static string adi;
+        public static string fname;
+        SqlCommand komut = new SqlCommand();
+
 
         public ActionResult Ofsetbaskilist(int sayfa = 1)
         {
@@ -90,15 +94,14 @@ namespace Uretim_Kalite.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult SendEmail(string MSIPARIS_NO, string MBOBINNO, string MHATA)
+        public ActionResult SendEmail(string MSIPARIS_NO, string MBOBINNO, string MHATA, string MIMAJ)
         {
             try
             {
                 var senderEmail = new MailAddress("bilgi@egemambalaj.com.tr", "Egemsis");
-                var receiverEmail = new MailAddress("ercan.ozyanar@egemambalaj.com.tr,egemsis.kalite@egemambalaj.com.tr", "Receiver");
-
+                var receiverEmail = new MailAddress("ercan.ozyanar@egemambalaj.com.tr");
                 var password = "Zug81146";
-                var subject = "SIPARIS NO : " + MSIPARIS_NO + " " + " PALET NO :" + MBOBINNO + " " + " Ofset Baskı Kalite Hata";
+                var subject = "SIPARIS NO : " + MSIPARIS_NO + " " + " PALET NO :" + MBOBINNO + " " + " Gravur Kalite Hata";
                 var body = "SIPARIS NO : " + MSIPARIS_NO + " " + " PALET NO :" + MBOBINNO + " " + " TARIH :" + DateTime.Now + " HATA BILDIRIMI :" + MHATA;
                 var smtp = new SmtpClient
                 {
@@ -115,19 +118,80 @@ namespace Uretim_Kalite.Controllers
                     Body = body
                 })
                 {
-                    smtp.Send(mess);
+                    if (String.IsNullOrEmpty(MIMAJ))
+                    {
+                        smtp.Send(mess);
+                    }
+                    else
+                    {
+                        mess.Attachments.Add(new Attachment(fname));
+                        smtp.Send(mess);
+                    }
                 }
-
-
+                komut.CommandText = "INSERT INTO EGEM_OFSETBASKI_KALITENOKIMAJ (SIPARISNO,BOBINNO,HATA,IMAJ,ADRES) VALUES (@MSIPARIS_NO,@MBOBINNO,@MHATA,@IMAJ,@ADRES)";
+                komut.Connection = conn1;
+                komut.CommandType = CommandType.Text;
+                conn1.Open();
+                komut.Parameters.Add("@MSIPARIS_NO", MSIPARIS_NO);
+                komut.Parameters.Add("@MBOBINNO", MBOBINNO);
+                komut.Parameters.Add("@MHATA", MHATA);
+                komut.Parameters.Add("@IMAJ", MIMAJ);
+                if (String.IsNullOrEmpty(MIMAJ))
+                {
+                    komut.Parameters.Add("@ADRES", "");
+                }
+                else
+                {
+                    komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ofisdata\\NOK_IMAJ\\OFSETBASKI\\" + adi + "_" + MIMAJ);
+                }
+                komut.ExecuteReader();
+                conn1.Close();
                 return View();
-
             }
             catch (Exception)
             {
-
                 return View();
             }
         }
+
+        [HttpPost]
+        public JsonResult DosyaYukle()
+        {
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    HttpFileCollectionBase files = Request.Files;
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        HttpPostedFileBase file = files[i];
+                        if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                        {
+                            string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                            fname = testfiles[testfiles.Length - 1];
+                        }
+                        else
+                        {
+                            string dosyaadi = DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_" + DateTime.Now.Second.ToString();
+                            string fileName = System.IO.Path.GetFileName(file.FileName);
+                            fname = Path.Combine(("//192.168.0.252//ofisdata//NOK_IMAJ//OFSETBASKI//"), dosyaadi + "_" + fileName);
+                            file.SaveAs(fname);
+                            adi = dosyaadi;
+                        }
+                    }
+                    return Json("Dosya Yükleme Başarılı");
+                }
+                catch (Exception ex)
+                {
+                    return Json("Hata Oluştu:  " + ex.Message);
+                }
+            }
+            else
+            {
+                return Json("Dosya seçilmedi");
+            }
+        }
+
         public ActionResult Sil(int id)
         {
             var baski = db.EGEM_OFSET_BASKI_KALITE.Find(id);

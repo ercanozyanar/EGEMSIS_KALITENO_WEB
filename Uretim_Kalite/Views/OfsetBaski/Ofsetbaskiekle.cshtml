@@ -330,6 +330,7 @@
                             <label for="ltxt1">SIPARIS NO</label>
                             <input class="form-control input-sm" id="MSIPARIS_NO" type="text" name="MSIPARIS_NO" size="20" value="">
                             <input class="form-control input-sm" id="HATAID" hidden="hidden" type="text" name="HATAID_NO" size="20" value="">
+                            <input class="form-control input-sm" id="UPLOADID" hidden="hidden" type="text" name="UPLOAD_NO" size="20" value="">
                         </div>
                         &nbsp;&nbsp;
                         <div>
@@ -341,6 +342,12 @@
                         <label for="message-text" class="col-form-label">Hata Nedeni:</label>
                         <textarea class="form-control" id="message-text"></textarea>
                     </div>
+
+                    <input class="btn btn-danger" type="file" id="FileUpload1" />
+                    <input class="btn btn-outline-danger" type="button" id="btnUpload" value="Dosya Yükle" />
+
+                    &nbsp;&nbsp;
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="send">Send message</button>
@@ -355,10 +362,12 @@
     $(document).ready(function () {
         $("#send").click(function () {
             var HATAIDX = ""
+            var UPLOADMAIL = $("#UPLOADID").val();
             var MSIPNO = $("#MSIPARIS_NO").val();
             var MBOBINNO = $("#MBOBINNO").val();
             var MHATA = $("#message-text").val();
             var HATAIDX = $("#HATAID").val();
+
             if (HATAIDX == "1") { $("#Nokgir1").val(MHATA) }
             if (HATAIDX == "2") { $("#Nokgir2").val(MHATA) }
             if (HATAIDX == "3") { $("#Nokgir3").val(MHATA) }
@@ -387,23 +396,68 @@
             if (HATAIDX == "26") { $("#Gtxt26").val(MHATA) }
             $.ajax({
                 type: 'POST',
-                url: '/OfsetBaski/SendEmail/' + MSIPNO, MBOBINNO,
+                url: '/OfsetBaski/SendEmail/' + MSIPNO, MBOBINNO, UPLOADMAIL,
                 data: {
-                    "MSIPARIS_NO": MSIPNO, "MBOBINNO": MBOBINNO, "MHATA": MHATA
+                    "MSIPARIS_NO": MSIPNO, "MBOBINNO": MBOBINNO, "MHATA": MHATA, "MIMAJ": UPLOADMAIL
                 },
                 datatype: "Json",
                 success: function (data) { }
             });
+            $("#UPLOADID").val("");
             alert("Mesajınız Gönderilmiştir...")
             $('#exampleModal').modal('hide');
         });
     });
 </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $('#btnUpload').click(function () {
+            var upload = ""
+            $("#UPLOADID").val("");
+            if (window.FormData !== undefined) {
+                var fileUpload = $("#FileUpload1").get(0);
+                var files = fileUpload.files;
+                var fileData = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                    upload = files[i].name
+                    $("#UPLOADID").val(upload);
+                }
+                fileData.append('username', 'yazilimsozluk');
+                $.ajax({
+                    type: "POST",
+                    url: '/OfsetBaski/DosyaYukle',
+
+                    contentType: false,
+                    processData: false,
+                    data: fileData,
+                    success: function (result) {
+                        alert(result);
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("Form Data desteklenmiyor.");
+            }
+        });
+    });
+</script>
+
+
 <script type="text/javascript">
     $("#Nokgir1").click(function () {
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir1").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -417,6 +471,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir2").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -430,6 +488,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir3").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -443,6 +505,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir4").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -456,6 +522,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir5").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -469,6 +539,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir6").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -483,6 +557,10 @@
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir7").val();
         $("#MSIPARIS_NO").val("");
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
         $("#MSIPARIS_NO").val(SIP);
@@ -495,6 +573,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir8").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -508,6 +590,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir9").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -521,6 +607,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir10").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -534,6 +624,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir11").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -547,6 +641,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir12").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -560,6 +658,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir13").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -573,6 +675,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir14").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -586,6 +692,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir15").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -599,6 +709,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir16").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -612,6 +726,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir17").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -625,6 +743,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir18").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -638,6 +760,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir19").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -651,6 +777,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir20").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -664,6 +794,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir21").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -677,6 +811,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir22").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -690,6 +828,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir23").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -703,6 +845,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir24").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -716,6 +862,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir25").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");
@@ -729,6 +879,10 @@
         var SIP = $("#txt1").val();
         var BOB = $("#txt4").val();
         var HATID = $("#Nokgir26").val();
+
+        $("#FileUpload1").val("");
+        $("#message-text").val("");
+
         $("#MSIPARIS_NO").val("");
         $("#MBOBINNO").val("");
         $("#HATAID").val("");

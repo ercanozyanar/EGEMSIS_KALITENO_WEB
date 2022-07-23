@@ -353,8 +353,7 @@
         </tr>
         <input class="form-control input-sm" id="ZAMANID" hidden="hidden" type="text" name="ZAMAN" size="20" value=@DateTime.Now>
         <input class="form-control input-sm" id="HATAGORSEL" hidden="hidden" type="text" name="NOK_GORSEL" size="20" value=@DateTime.Now>
-
-    </table>
+        </table>
     <div>
         <button class="btn btn-success">Kaydet</button>
     </div>
@@ -440,13 +439,14 @@
             if (HATAIDX == "27") { $("#Gtxt27").val(MHATA) }
             $.ajax({
                 type: 'POST',
-                url: '/EsnekBaski/SendEmail/' + MSIPNO, MBOBINNO,, UPLOADMAIL,
+                url: '/EsnekBaski/SendEmail/' + MSIPNO, MBOBINNO,UPLOADMAIL,
                 data: {
                     "MSIPARIS_NO": MSIPNO, "MBOBINNO": MBOBINNO, "MHATA": MHATA, "MIMAJ": UPLOADMAIL
                 },
                 datatype: "Json",
                 success: function (data) { }
             });
+            $("#UPLOADID").val("");
             alert("Mesajınız Gönderilmiştir...")
             $('#exampleModal').modal('hide');
         });
@@ -481,6 +481,8 @@
                     data: fileData,
                     success: function (result) {
                         alert(result);
+
+                        
                     },
                     error: function (err) {
                         alert(err.statusText);

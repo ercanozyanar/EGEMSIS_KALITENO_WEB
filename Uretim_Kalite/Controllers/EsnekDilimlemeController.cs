@@ -123,8 +123,15 @@ namespace Uretim_Kalite.Controllers
                     Body = body
                 })
                 {
-                    mess.Attachments.Add(new Attachment(fname));
-                    smtp.Send(mess);
+                    if (String.IsNullOrEmpty(MIMAJ))
+                    {
+                        smtp.Send(mess);
+                    }
+                    else
+                    {
+                        mess.Attachments.Add(new Attachment(fname));
+                        smtp.Send(mess);
+                    }
                 }
                 komut.CommandText = "INSERT INTO EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ (SIPARISNO,BOBINNO,HATA,IMAJ,ADRES) VALUES (@MSIPARIS_NO,@MBOBINNO,@MHATA,@IMAJ,@ADRES)";
                 komut.Connection = conn1;
@@ -135,7 +142,14 @@ namespace Uretim_Kalite.Controllers
                 komut.Parameters.Add("@MBOBINNO", MBOBINNO);
                 komut.Parameters.Add("@MHATA", MHATA);
                 komut.Parameters.Add("@IMAJ", MIMAJ);
-                komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ofisdata\\NOK_IMAJ\\ESNEKDILIMLEME\\" + adi + "_" + MIMAJ);
+                if (String.IsNullOrEmpty(MIMAJ))
+                {
+                    komut.Parameters.Add("@ADRES", "");
+                }
+                else
+                {
+                    komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ofisdata\\NOK_IMAJ\\ESNEKDILIMLEME\\" + adi + "_" + MIMAJ);
+                }
                 komut.ExecuteReader();
                 conn1.Close();
                 return View();
