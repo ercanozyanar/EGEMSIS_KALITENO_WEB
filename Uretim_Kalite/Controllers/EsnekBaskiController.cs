@@ -16,7 +16,6 @@ using System.Web.Security;
 using Uretim_Kalite.Enums;
 using Uretim_Kalite.Services;
 
-
 namespace Uretim_Kalite.Controllers
 {
     public class EsnekBaskiController : Controller
@@ -50,7 +49,8 @@ namespace Uretim_Kalite.Controllers
             {
                 students = students.Where(stu => stu.ZAMAN.ToString().Contains(Search_Data.ToString()));
 
-             }
+                students = students.Where(stu => stu.ZAMAN.ToString().Contains(Search_Data.ToString()));
+            }
             students = students.OrderByDescending(stu => stu.ID);
 
            
@@ -220,12 +220,12 @@ namespace Uretim_Kalite.Controllers
                                             new DataColumn("URUN_ADI"),
                                             new DataColumn("TONLAMA")});
 
-            var ebaskis = from ebaski in entities.EGEM_ESNEK_BASKI_KALITE.Take(10)
-                            select ebaski;
+            var customers = from customer in entities.EGEM_ESNEK_BASKI_KALITE.Take(10)
+                            select customer;
 
-            foreach (var ebaski in ebaskis)
+            foreach (var customer in customers)
             {
-                dt.Rows.Add(ebaski.ZAMAN, ebaski.SIPARIS_NO, ebaski.URUN_KODU, ebaski.URUN_ADI, ebaski.TONLAMA);
+                dt.Rows.Add(customer.ZAMAN, customer.SIPARIS_NO, customer.URUN_KODU, customer.URUN_ADI, customer.TONLAMA);
             }
             using (XLWorkbook wb = new XLWorkbook())
             {
