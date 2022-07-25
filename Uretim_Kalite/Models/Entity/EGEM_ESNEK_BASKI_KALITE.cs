@@ -18,7 +18,7 @@ namespace Uretim_Kalite.Models.Entity
         public string URUN_KODU { get; set; }
         public string URUN_ADI { get; set; }
         public string SIPARIS_NO { get; set; }
-        public Nullable<System.DateTime> ZAMAN { get; set; }
+        public string ZAMAN { get; set; }
         public Nullable<int> BOBIN_NO { get; set; }
         public string HAMMADDE_KONTROL { get; set; }
         public string BOBIN_ENI { get; set; }

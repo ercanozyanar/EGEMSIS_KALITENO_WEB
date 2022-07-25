@@ -32,7 +32,7 @@ namespace Uretim_Kalite.Controllers
             var degerler = db.EGEM_ESNEK_BASKI_KALITE.ToList().ToPagedList(sayfa, 20);
             return View(degerler);
         }
-        public ActionResult Baskiduzen(string Search_Data, string Filter_Value, int? Page_No)
+        public ActionResult Baskiduzen(String Search_Data, String Filter_Value, int? Page_No)
         {
             if (Search_Data != null)
             {
@@ -43,15 +43,22 @@ namespace Uretim_Kalite.Controllers
                 Search_Data = Filter_Value;
             }
             ViewBag.FilterValue = Search_Data;
+
             var students = from stu in db.EGEM_ESNEK_BASKI_KALITE select stu;
             if (!String.IsNullOrEmpty(Search_Data))
             {
-                students = students.Where(stu => stu.SIPARIS_NO.ToUpper().Contains(Search_Data.ToUpper()));
+                students = students.Where(stu => stu.ZAMAN.ToString().Contains(Search_Data.ToString()));
+
+                students = students.Where(stu => stu.ZAMAN.ToString().Contains(Search_Data.ToString()));
             }
             students = students.OrderByDescending(stu => stu.ID);
+
+           
             int Size_Of_Page = 10;
             int No_Of_Page = (Page_No ?? 1);
             return View(students.ToPagedList(No_Of_Page, Size_Of_Page));
+
+
         }
         [HttpGet]
         public ActionResult Baskiekle()

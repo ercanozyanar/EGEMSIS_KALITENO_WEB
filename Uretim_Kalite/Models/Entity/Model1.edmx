@@ -5,6 +5,8 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EGEM2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EGEM2022.dbo.EGEM_ESNEK_BASKI_KALITE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="EGEM_ESNEK_BASKI_KALITE">
           <Key>
             <PropertyRef Name="ID" />
@@ -13,7 +15,7 @@
           <Property Name="URUN_KODU" Type="nvarchar" MaxLength="50" />
           <Property Name="URUN_ADI" Type="nvarchar(max)" />
           <Property Name="SIPARIS_NO" Type="nvarchar" MaxLength="50" />
-          <Property Name="ZAMAN" Type="smalldatetime" />
+          <Property Name="ZAMAN" Type="nvarchar(max)" />
           <Property Name="BOBIN_NO" Type="int" />
           <Property Name="HAMMADDE_KONTROL" Type="nvarchar(max)" />
           <Property Name="BOBIN_ENI" Type="nvarchar(max)" />
@@ -269,7 +271,6 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <Property Name="STOK_ADI" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="EGEM2021ModelStoreContainer">
-          <EntitySet Name="EGEM_ESNEK_BASKI_KALITE" EntityType="Self.EGEM_ESNEK_BASKI_KALITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ" EntityType="Self.EGEM_ESNEK_BASKI_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_ESNEK_DILIMLEME_KALITE" EntityType="Self.EGEM_ESNEK_DILIMLEME_KALITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_ESNEK_LAMINASYON_KALITE" EntityType="Self.EGEM_ESNEK_LAMINASYON_KALITE" Schema="dbo" store:Type="Tables" />
@@ -277,6 +278,47 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <EntitySet Name="EGEM_KALITE_PERSONEL" EntityType="Self.EGEM_KALITE_PERSONEL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_OFSET_BASKI_KALITE" EntityType="Self.EGEM_OFSET_BASKI_KALITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_OFSET_BITIRME_KALITE" EntityType="Self.EGEM_OFSET_BITIRME_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_ESNEK_BASKI_KALITE" EntityType="Self.EGEM_ESNEK_BASKI_KALITE" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EGEM_ESNEK_BASKI_KALITE].[ID] AS [ID], 
+    [EGEM_ESNEK_BASKI_KALITE].[URUN_KODU] AS [URUN_KODU], 
+    [EGEM_ESNEK_BASKI_KALITE].[URUN_ADI] AS [URUN_ADI], 
+    [EGEM_ESNEK_BASKI_KALITE].[SIPARIS_NO] AS [SIPARIS_NO], 
+    [EGEM_ESNEK_BASKI_KALITE].[ZAMAN] AS [ZAMAN], 
+    [EGEM_ESNEK_BASKI_KALITE].[BOBIN_NO] AS [BOBIN_NO], 
+    [EGEM_ESNEK_BASKI_KALITE].[HAMMADDE_KONTROL] AS [HAMMADDE_KONTROL], 
+    [EGEM_ESNEK_BASKI_KALITE].[BOBIN_ENI] AS [BOBIN_ENI], 
+    [EGEM_ESNEK_BASKI_KALITE].[FOTOSEL_ARALIGI] AS [FOTOSEL_ARALIGI], 
+    [EGEM_ESNEK_BASKI_KALITE].[NET_BASKI_ENI] AS [NET_BASKI_ENI], 
+    [EGEM_ESNEK_BASKI_KALITE].[BASKI_YONU] AS [BASKI_YONU], 
+    [EGEM_ESNEK_BASKI_KALITE].[FILM_TIPI] AS [FILM_TIPI], 
+    [EGEM_ESNEK_BASKI_KALITE].[BARKOD_OKUNUR] AS [BARKOD_OKUNUR], 
+    [EGEM_ESNEK_BASKI_KALITE].[ACILIS_YONU] AS [ACILIS_YONU], 
+    [EGEM_ESNEK_BASKI_KALITE].[ARKA_KAPANMA_SEKLI] AS [ARKA_KAPANMA_SEKLI], 
+    [EGEM_ESNEK_BASKI_KALITE].[ICERIK_KONTROL] AS [ICERIK_KONTROL], 
+    [EGEM_ESNEK_BASKI_KALITE].[RENK_UYGUN] AS [RENK_UYGUN], 
+    [EGEM_ESNEK_BASKI_KALITE].[RENK_UYGUN_GOZ] AS [RENK_UYGUN_GOZ], 
+    [EGEM_ESNEK_BASKI_KALITE].[BASKI_KAYIK] AS [BASKI_KAYIK], 
+    [EGEM_ESNEK_BASKI_KALITE].[GORSEL_KONTROL] AS [GORSEL_KONTROL], 
+    [EGEM_ESNEK_BASKI_KALITE].[ADEZYON] AS [ADEZYON], 
+    [EGEM_ESNEK_BASKI_KALITE].[KURUMA] AS [KURUMA], 
+    [EGEM_ESNEK_BASKI_KALITE].[TONLAMA] AS [TONLAMA], 
+    [EGEM_ESNEK_BASKI_KALITE].[SAKAL] AS [SAKAL], 
+    [EGEM_ESNEK_BASKI_KALITE].[CIZGI] AS [CIZGI], 
+    [EGEM_ESNEK_BASKI_KALITE].[ISIL_YAPISMA] AS [ISIL_YAPISMA], 
+    [EGEM_ESNEK_BASKI_KALITE].[MUREKKEP_MIKTAR] AS [MUREKKEP_MIKTAR], 
+    [EGEM_ESNEK_BASKI_KALITE].[BIRIM_AGIRLIK] AS [BIRIM_AGIRLIK], 
+    [EGEM_ESNEK_BASKI_KALITE].[COF] AS [COF], 
+    [EGEM_ESNEK_BASKI_KALITE].[GC_TEST] AS [GC_TEST], 
+    [EGEM_ESNEK_BASKI_KALITE].[BOBIN_ICBAYRAK_SAYI] AS [BOBIN_ICBAYRAK_SAYI], 
+    [EGEM_ESNEK_BASKI_KALITE].[MAKINE] AS [MAKINE], 
+    [EGEM_ESNEK_BASKI_KALITE].[KONTROL_ONAY] AS [KONTROL_ONAY], 
+    [EGEM_ESNEK_BASKI_KALITE].[SILINDIR_KOD_KONTROL] AS [SILINDIR_KOD_KONTROL], 
+    [EGEM_ESNEK_BASKI_KALITE].[GLOSS] AS [GLOSS], 
+    [EGEM_ESNEK_BASKI_KALITE].[NOK_GORSEL] AS [NOK_GORSEL], 
+    [EGEM_ESNEK_BASKI_KALITE].[GORSEL_ADRES] AS [GORSEL_ADRES]
+    FROM [dbo].[EGEM_ESNEK_BASKI_KALITE] AS [EGEM_ESNEK_BASKI_KALITE]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="EGEM_KALITE_USER" EntityType="Self.EGEM_KALITE_USER" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [EGEM_KALITE_USER].[ID] AS [ID], 
@@ -498,7 +540,7 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <Property Name="URUN_KODU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="URUN_ADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SIPARIS_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ZAMAN" Type="DateTime" Precision="0" />
+          <Property Name="ZAMAN" Type="String" />
           <Property Name="BOBIN_NO" Type="Int32" />
           <Property Name="HAMMADDE_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BOBIN_ENI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
