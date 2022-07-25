@@ -24,6 +24,7 @@ namespace Uretim_Kalite.Controllers
         SqlConnection conn1 = new SqlConnection("Data Source=192.168.0.251;Initial Catalog=EGEM2022;Persist Security Info=True;User ID=egem;Password=123456");
         public static string adi;
         public static string fname;
+        public static string kod;
         SqlCommand komut = new SqlCommand();
 
 
@@ -34,6 +35,7 @@ namespace Uretim_Kalite.Controllers
         }
         public ActionResult Baskiduzen(String Search_Data, String Filter_Value, int? Page_No)
         {
+            kod = Search_Data;
             if (Search_Data != null)
             {
                 Page_No = 1;
@@ -103,7 +105,7 @@ namespace Uretim_Kalite.Controllers
         [HttpPost]
         public ActionResult SendEmail(string MSIPARIS_NO, string MBOBINNO,string MHATA,string MIMAJ)
         {
-           try
+            try
             {
                 var senderEmail = new MailAddress("bilgi@egemambalaj.com.tr", "Egemsis");
                 var receiverEmail = new MailAddress("ercan.ozyanar@egemambalaj.com.tr");
@@ -154,6 +156,7 @@ namespace Uretim_Kalite.Controllers
                 komut.ExecuteReader();
                 conn1.Close();
                 return View();
+            
            }
             catch (Exception)
            {
@@ -210,9 +213,13 @@ namespace Uretim_Kalite.Controllers
             }
         }
         [HttpPost]
-        public FileResult Export()
+        public ActionResult Export(string Search_Data, string Filter_Value)
         {
+                                 
+
             EGEM2021Entities1 entities = new EGEM2021Entities1();
+
+
             DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[5] { new DataColumn("ZAMAN"),
                                             new DataColumn("SIPARIS_NO"),
@@ -220,10 +227,10 @@ namespace Uretim_Kalite.Controllers
                                             new DataColumn("URUN_ADI"),
                                             new DataColumn("TONLAMA")});
 
-            var customers = from customer in entities.EGEM_ESNEK_BASKI_KALITE.Take(10)
-                            select customer;
+            var customers = from stu in db.EGEM_ESNEK_BASKI_KALITE select stu;
+            customers = customers.Where(stu => stu.ZAMAN.ToString().Contains(kod.ToString()));
 
-            foreach (var customer in customers)
+            foreach (var customer in customers.ToList())
             {
                 dt.Rows.Add(customer.ZAMAN, customer.SIPARIS_NO, customer.URUN_KODU, customer.URUN_ADI, customer.TONLAMA);
             }
