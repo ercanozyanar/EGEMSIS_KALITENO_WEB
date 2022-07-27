@@ -165,10 +165,19 @@
     <Compile Include="Models\Entity\EGEM_ESNEK_DILIMLEME_KALITE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity\EGEM_ESNEK_LAMINASYON_KALITE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity\EGEM_GRAVUR_KALITE.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\EGEM_GRAVUR_KALITENOKIMAJ.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\EGEM_GRAVUR_KALITE_SIPARIS.cs">
@@ -178,6 +187,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\EGEM_KALITE_USER.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\EGEM_OFSETBASKI_KALITENOKIMAJ.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\EGEM_OFSETBITIRME_KALITENOKIMAJ.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\EGEM_OFSET_BASKI_KALITE.cs">
@@ -350,9 +365,16 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Kalite\Kalitelist.cshtml" />
     <Content Include="Views\Kalite\Kaliteekle.cshtml" />
+    <Content Include="Views\EsnekBaski\BaskiNOK.cshtml" />
+    <Content Include="Views\EsnekDilimleme\DilimlemeNOK.cshtml" />
+    <Content Include="Views\EsnekLaminasyon\LaminasyonNOK.cshtml" />
+    <Content Include="Views\Gravur\GravurNOK.cshtml" />
+    <Content Include="Views\OfsetBaski\OfsetbaskiNOK.cshtml" />
+    <Content Include="Views\OfsetBitirme\OfsetbitirmeNOK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\NOK_IMAJ\ESNEKBASKI\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

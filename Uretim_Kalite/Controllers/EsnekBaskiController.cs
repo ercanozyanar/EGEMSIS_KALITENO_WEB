@@ -54,13 +54,9 @@ namespace Uretim_Kalite.Controllers
                 students = students.Where(stu => stu.ZAMAN.ToString().Contains(Search_Data.ToString()));
             }
             students = students.OrderByDescending(stu => stu.ID);
-
-           
             int Size_Of_Page = 10;
             int No_Of_Page = (Page_No ?? 1);
             return View(students.ToPagedList(No_Of_Page, Size_Of_Page));
-
-
         }
         [HttpGet]
         public ActionResult Baskiekle()
@@ -151,13 +147,12 @@ namespace Uretim_Kalite.Controllers
                 }
                 else
                 {
-                    komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ofisdata\\NOK_IMAJ\\ESNEKBASKI\\" + adi + "_" + MIMAJ);
+                    komut.Parameters.Add("@ADRES",adi + "_" + MIMAJ);
                 }
                 komut.ExecuteReader();
                 conn1.Close();
                 return View();
-            
-           }
+            }
             catch (Exception)
            {
                return View();
@@ -169,7 +164,6 @@ namespace Uretim_Kalite.Controllers
             db.EGEM_ESNEK_BASKI_KALITE.Remove(baski);
             db.SaveChanges();
             return RedirectToAction("Baskiduzen");
-
         }
         [HttpPost]
         public JsonResult DosyaYukle()
@@ -192,14 +186,11 @@ namespace Uretim_Kalite.Controllers
                         {
                             string dosyaadi = DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_" + DateTime.Now.Second.ToString();
                             string fileName = System.IO.Path.GetFileName(file.FileName);
-                            fname = Path.Combine(("//192.168.0.252//ofisdata//NOK_IMAJ//ESNEKBASKI//"),dosyaadi +"_"+ fileName);
+                            fname = Path.Combine(Server.MapPath("~/Content/NOK_IMAJ/ESNEKBASKI/"), dosyaadi +"_"+ fileName);
                             file.SaveAs(fname);
                             adi = dosyaadi;
                         }
-                        
-                        
-                        
-                    }
+                      }
                     return Json("Dosya Yükleme Başarılı");
                 }
                 catch (Exception ex)
@@ -212,27 +203,114 @@ namespace Uretim_Kalite.Controllers
                 return Json("Dosya seçilmedi");
             }
         }
+
+        public ActionResult BaskiNOK(String Search_Data, String Filter_Value, int? Page_No)
+        {
+          
+            if (Search_Data != null)
+            {
+                Page_No = 1;
+            }
+            else
+            {
+                Search_Data = Filter_Value;
+            }
+            ViewBag.FilterValue = Search_Data;
+
+            var students = from stu in db.EGEM_ESNEK_BASKI_KALITENOKIMAJ select stu;
+            if (!String.IsNullOrEmpty(Search_Data))
+            {
+                students = students.Where(stu => stu.SIPARISNO.ToString().Contains(Search_Data.ToString()));
+
+                students = students.Where(stu => stu.SIPARISNO.ToString().Contains(Search_Data.ToString()));
+            }
+            students = students.OrderByDescending(stu => stu.ID);
+            int Size_Of_Page = 10;
+            int No_Of_Page = (Page_No ?? 1);
+            return View(students.ToPagedList(No_Of_Page, Size_Of_Page));
+        }
         [HttpPost]
         public ActionResult Export(string Search_Data, string Filter_Value)
         {
-                                 
-
-            EGEM2021Entities1 entities = new EGEM2021Entities1();
-
-
-            DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("ZAMAN"),
-                                            new DataColumn("SIPARIS_NO"),
-                                            new DataColumn("URUN_KODU"),
-                                            new DataColumn("URUN_ADI"),
-                                            new DataColumn("TONLAMA")});
-
+             EGEM2021Entities1 entities = new EGEM2021Entities1();
+             DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[34] 
+            {
+                new DataColumn("URUN_KODU"),
+                new DataColumn("URUN_ADI"),
+                new DataColumn("SIPARIS_NO"),
+                new DataColumn("ZAMAN"),
+                new DataColumn("BOBIN_NO"),
+                new DataColumn("HAMMADDE_KONTROL"),
+                new DataColumn("BOBIN_ENI"),
+                new DataColumn("FOTOSEL_ARALIGI"),
+                new DataColumn("NET_BASKI_ENI"),
+                new DataColumn("BASKI_YONU"),
+                new DataColumn("FILM_TIPI"),
+                new DataColumn("BARKOD_OKUNUR"),
+                new DataColumn("ACILIS_YONU"),
+                new DataColumn("ARKA_KAPANMA_SEKLI"),
+                new DataColumn("ICERIK_KONTROL"),
+                new DataColumn("RENK_UYGUN"),
+                new DataColumn("RENK_UYGUN_GOZ"),
+                new DataColumn("BASKI_KAYIK"),
+                new DataColumn("GORSEL_KONTROL"),
+                new DataColumn("ADEZYON"),
+                new DataColumn("KURUMA"),
+                new DataColumn("TONLAMA"),
+                new DataColumn("SAKAL"),
+                new DataColumn("CIZGI"),
+                new DataColumn("ISIL_YAPISMA"),
+                new DataColumn("MUREKKEP_MIKTAR"),
+                new DataColumn("BIRIM_AGIRLIK"),
+                new DataColumn("COF"),
+                new DataColumn("GC_TEST"),
+                new DataColumn("BOBIN_ICBAYRAK_SAYI"),
+                new DataColumn("MAKINE"),
+                new DataColumn("KONTROL_ONAY"),
+                new DataColumn("SILINDIR_KOD_KONTROL"),
+                new DataColumn("GLOSS")
+            });
             var customers = from stu in db.EGEM_ESNEK_BASKI_KALITE select stu;
             customers = customers.Where(stu => stu.ZAMAN.ToString().Contains(kod.ToString()));
-
             foreach (var customer in customers.ToList())
             {
-                dt.Rows.Add(customer.ZAMAN, customer.SIPARIS_NO, customer.URUN_KODU, customer.URUN_ADI, customer.TONLAMA);
+                dt.Rows.Add(
+                    customer.URUN_KODU, 
+                    customer.URUN_ADI, 
+                    customer.SIPARIS_NO, 
+                    customer.ZAMAN, 
+                    customer.BOBIN_NO,
+                    customer.HAMMADDE_KONTROL,
+                    customer.BOBIN_ENI,
+                    customer.FOTOSEL_ARALIGI,
+                    customer.NET_BASKI_ENI,
+                    customer.BASKI_YONU,
+                    customer.FILM_TIPI,
+                    customer.BARKOD_OKUNUR,
+                    customer.ACILIS_YONU,
+                    customer.ARKA_KAPANMA_SEKLI,
+                    customer.ICERIK_KONTROL,
+                    customer.RENK_UYGUN,
+                    customer.RENK_UYGUN_GOZ,
+                    customer.BASKI_KAYIK,
+                    customer.GORSEL_KONTROL,
+                    customer.ADEZYON,
+                    customer.KURUMA,
+                    customer.TONLAMA,
+                    customer.SAKAL,
+                    customer.CIZGI,
+                    customer.ISIL_YAPISMA,
+                    customer.MUREKKEP_MIKTAR,
+                    customer.BIRIM_AGIRLIK,
+                    customer.COF,
+                    customer.GC_TEST,
+                    customer.BOBIN_ICBAYRAK_SAYI,
+                    customer.MAKINE,
+                    customer.KONTROL_ONAY,
+                    customer.SILINDIR_KOD_KONTROL,
+                    customer.GLOSS
+                    );
             }
             using (XLWorkbook wb = new XLWorkbook())
             {

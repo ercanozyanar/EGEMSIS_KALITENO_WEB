@@ -15,6 +15,11 @@
         <EntityTypeShape EntityType="EGEM2021Model.EGEM_KALITE_USER" Width="1.5" PointX="0.75" PointY="2.75" />
         <EntityTypeShape EntityType="EGEM2021Model.EGEM_KALITE_PERSONEL" Width="1.5" PointX="4.125" PointY="6" />
         <EntityTypeShape EntityType="EGEM2021Model.EGEM_ESNEK_BASKI_KALITENOKIMAJ" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ" Width="1.5" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_GRAVUR_KALITENOKIMAJ" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_OFSETBASKI_KALITENOKIMAJ" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="EGEM2021Model.EGEM_OFSETBITIRME_KALITENOKIMAJ" Width="1.5" PointX="12.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

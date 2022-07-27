@@ -123,7 +123,6 @@
     </tbody>
 
 </table>
-
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
         @Html.PagedListPager(Model, Page_No =>Url.Action("Baskiduzen",
             new { Page_No, Sorting_Order= ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))

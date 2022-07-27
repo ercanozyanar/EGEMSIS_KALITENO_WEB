@@ -5,8 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EGEM2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'EGEM2022.dbo.EGEM_ESNEK_BASKI_KALITE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="EGEM_ESNEK_BASKI_KALITE">
           <Key>
             <PropertyRef Name="ID" />
@@ -59,6 +57,7 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_ESNEK_BASKI_KALITE' does not hav
           <Property Name="HATA" Type="nvarchar(max)" />
           <Property Name="IMAJ" Type="nvarchar(max)" />
           <Property Name="ADRES" Type="nvarchar(max)" />
+          <Property Name="IMAJBYTE" Type="image" />
         </EntityType>
         <EntityType Name="EGEM_ESNEK_DILIMLEME_KALITE">
           <Key>
@@ -89,6 +88,17 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_ESNEK_BASKI_KALITE' does not hav
           <Property Name="KALITE_ONAY" Type="nvarchar(max)" />
           <Property Name="MAKINE" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIPARISNO" Type="nvarchar(max)" />
+          <Property Name="BOBINNO" Type="nvarchar(max)" />
+          <Property Name="HATA" Type="nvarchar(max)" />
+          <Property Name="IMAJ" Type="nvarchar(max)" />
+          <Property Name="ADRES" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="EGEM_ESNEK_LAMINASYON_KALITE">
           <Key>
             <PropertyRef Name="ID" />
@@ -112,6 +122,17 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_ESNEK_BASKI_KALITE' does not hav
           <Property Name="LAMINASYON_KUVVETI" Type="nvarchar(max)" />
           <Property Name="COF_TEST" Type="nvarchar(max)" />
           <Property Name="KALITE_ONAY" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIPARISNO" Type="nvarchar(max)" />
+          <Property Name="BOBINNO" Type="nvarchar(max)" />
+          <Property Name="HATA" Type="nvarchar(max)" />
+          <Property Name="IMAJ" Type="nvarchar(max)" />
+          <Property Name="ADRES" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="EGEM_GRAVUR_KALITE">
           <Key>
@@ -165,6 +186,17 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_ESNEK_BASKI_KALITE' does not hav
           <Property Name="hammadde_gorsel_kontrol" Type="nvarchar(max)" />
           <Property Name="makine_temiz_renk" Type="nvarchar(max)" />
           <Property Name="kirpinti_kontrol" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_GRAVUR_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIPARISNO" Type="nvarchar(max)" />
+          <Property Name="BOBINNO" Type="nvarchar(max)" />
+          <Property Name="HATA" Type="nvarchar(max)" />
+          <Property Name="IMAJ" Type="nvarchar(max)" />
+          <Property Name="ADRES" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="EGEM_KALITE_PERSONEL">
           <Key>
@@ -259,6 +291,28 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_KALITE_USER' does not have a pri
           <Property Name="KONTROL_EDEN" Type="nvarchar" MaxLength="100" />
           <Property Name="BUNDLE_YUKSEK" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="EGEM_OFSETBASKI_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIPARISNO" Type="nvarchar(max)" />
+          <Property Name="BOBINNO" Type="nvarchar(max)" />
+          <Property Name="HATA" Type="nvarchar(max)" />
+          <Property Name="IMAJ" Type="nvarchar(max)" />
+          <Property Name="ADRES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EGEM_OFSETBITIRME_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SIPARISNO" Type="nvarchar(max)" />
+          <Property Name="BOBINNO" Type="nvarchar(max)" />
+          <Property Name="HATA" Type="nvarchar(max)" />
+          <Property Name="IMAJ" Type="nvarchar(max)" />
+          <Property Name="ADRES" Type="nvarchar(max)" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="EGEM_GRAVUR_KALITE_SIPARIS">
@@ -271,54 +325,19 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <Property Name="STOK_ADI" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="EGEM2021ModelStoreContainer">
+          <EntitySet Name="EGEM_ESNEK_BASKI_KALITE" EntityType="Self.EGEM_ESNEK_BASKI_KALITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ" EntityType="Self.EGEM_ESNEK_BASKI_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_ESNEK_DILIMLEME_KALITE" EntityType="Self.EGEM_ESNEK_DILIMLEME_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ" EntityType="Self.EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_ESNEK_LAMINASYON_KALITE" EntityType="Self.EGEM_ESNEK_LAMINASYON_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ" EntityType="Self.EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_GRAVUR_KALITE" EntityType="Self.EGEM_GRAVUR_KALITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_GRAVUR_KALITENOKIMAJ" EntityType="Self.EGEM_GRAVUR_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_KALITE_PERSONEL" EntityType="Self.EGEM_KALITE_PERSONEL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_OFSET_BASKI_KALITE" EntityType="Self.EGEM_OFSET_BASKI_KALITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_OFSET_BITIRME_KALITE" EntityType="Self.EGEM_OFSET_BITIRME_KALITE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EGEM_ESNEK_BASKI_KALITE" EntityType="Self.EGEM_ESNEK_BASKI_KALITE" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [EGEM_ESNEK_BASKI_KALITE].[ID] AS [ID], 
-    [EGEM_ESNEK_BASKI_KALITE].[URUN_KODU] AS [URUN_KODU], 
-    [EGEM_ESNEK_BASKI_KALITE].[URUN_ADI] AS [URUN_ADI], 
-    [EGEM_ESNEK_BASKI_KALITE].[SIPARIS_NO] AS [SIPARIS_NO], 
-    [EGEM_ESNEK_BASKI_KALITE].[ZAMAN] AS [ZAMAN], 
-    [EGEM_ESNEK_BASKI_KALITE].[BOBIN_NO] AS [BOBIN_NO], 
-    [EGEM_ESNEK_BASKI_KALITE].[HAMMADDE_KONTROL] AS [HAMMADDE_KONTROL], 
-    [EGEM_ESNEK_BASKI_KALITE].[BOBIN_ENI] AS [BOBIN_ENI], 
-    [EGEM_ESNEK_BASKI_KALITE].[FOTOSEL_ARALIGI] AS [FOTOSEL_ARALIGI], 
-    [EGEM_ESNEK_BASKI_KALITE].[NET_BASKI_ENI] AS [NET_BASKI_ENI], 
-    [EGEM_ESNEK_BASKI_KALITE].[BASKI_YONU] AS [BASKI_YONU], 
-    [EGEM_ESNEK_BASKI_KALITE].[FILM_TIPI] AS [FILM_TIPI], 
-    [EGEM_ESNEK_BASKI_KALITE].[BARKOD_OKUNUR] AS [BARKOD_OKUNUR], 
-    [EGEM_ESNEK_BASKI_KALITE].[ACILIS_YONU] AS [ACILIS_YONU], 
-    [EGEM_ESNEK_BASKI_KALITE].[ARKA_KAPANMA_SEKLI] AS [ARKA_KAPANMA_SEKLI], 
-    [EGEM_ESNEK_BASKI_KALITE].[ICERIK_KONTROL] AS [ICERIK_KONTROL], 
-    [EGEM_ESNEK_BASKI_KALITE].[RENK_UYGUN] AS [RENK_UYGUN], 
-    [EGEM_ESNEK_BASKI_KALITE].[RENK_UYGUN_GOZ] AS [RENK_UYGUN_GOZ], 
-    [EGEM_ESNEK_BASKI_KALITE].[BASKI_KAYIK] AS [BASKI_KAYIK], 
-    [EGEM_ESNEK_BASKI_KALITE].[GORSEL_KONTROL] AS [GORSEL_KONTROL], 
-    [EGEM_ESNEK_BASKI_KALITE].[ADEZYON] AS [ADEZYON], 
-    [EGEM_ESNEK_BASKI_KALITE].[KURUMA] AS [KURUMA], 
-    [EGEM_ESNEK_BASKI_KALITE].[TONLAMA] AS [TONLAMA], 
-    [EGEM_ESNEK_BASKI_KALITE].[SAKAL] AS [SAKAL], 
-    [EGEM_ESNEK_BASKI_KALITE].[CIZGI] AS [CIZGI], 
-    [EGEM_ESNEK_BASKI_KALITE].[ISIL_YAPISMA] AS [ISIL_YAPISMA], 
-    [EGEM_ESNEK_BASKI_KALITE].[MUREKKEP_MIKTAR] AS [MUREKKEP_MIKTAR], 
-    [EGEM_ESNEK_BASKI_KALITE].[BIRIM_AGIRLIK] AS [BIRIM_AGIRLIK], 
-    [EGEM_ESNEK_BASKI_KALITE].[COF] AS [COF], 
-    [EGEM_ESNEK_BASKI_KALITE].[GC_TEST] AS [GC_TEST], 
-    [EGEM_ESNEK_BASKI_KALITE].[BOBIN_ICBAYRAK_SAYI] AS [BOBIN_ICBAYRAK_SAYI], 
-    [EGEM_ESNEK_BASKI_KALITE].[MAKINE] AS [MAKINE], 
-    [EGEM_ESNEK_BASKI_KALITE].[KONTROL_ONAY] AS [KONTROL_ONAY], 
-    [EGEM_ESNEK_BASKI_KALITE].[SILINDIR_KOD_KONTROL] AS [SILINDIR_KOD_KONTROL], 
-    [EGEM_ESNEK_BASKI_KALITE].[GLOSS] AS [GLOSS], 
-    [EGEM_ESNEK_BASKI_KALITE].[NOK_GORSEL] AS [NOK_GORSEL], 
-    [EGEM_ESNEK_BASKI_KALITE].[GORSEL_ADRES] AS [GORSEL_ADRES]
-    FROM [dbo].[EGEM_ESNEK_BASKI_KALITE] AS [EGEM_ESNEK_BASKI_KALITE]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="EGEM_OFSETBASKI_KALITENOKIMAJ" EntityType="Self.EGEM_OFSETBASKI_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_OFSETBITIRME_KALITENOKIMAJ" EntityType="Self.EGEM_OFSETBITIRME_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_KALITE_USER" EntityType="Self.EGEM_KALITE_USER" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [EGEM_KALITE_USER].[ID] AS [ID], 
@@ -402,6 +421,11 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <EntitySet Name="EGEM_KALITE_USER" EntityType="EGEM2021Model.EGEM_KALITE_USER" />
           <EntitySet Name="EGEM_KALITE_PERSONEL" EntityType="EGEM2021Model.EGEM_KALITE_PERSONEL" />
           <EntitySet Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ" EntityType="EGEM2021Model.EGEM_ESNEK_BASKI_KALITENOKIMAJ" />
+          <EntitySet Name="EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ" EntityType="EGEM2021Model.EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ" />
+          <EntitySet Name="EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ" EntityType="EGEM2021Model.EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ" />
+          <EntitySet Name="EGEM_GRAVUR_KALITENOKIMAJ" EntityType="EGEM2021Model.EGEM_GRAVUR_KALITENOKIMAJ" />
+          <EntitySet Name="EGEM_OFSETBASKI_KALITENOKIMAJ" EntityType="EGEM2021Model.EGEM_OFSETBASKI_KALITENOKIMAJ" />
+          <EntitySet Name="EGEM_OFSETBITIRME_KALITENOKIMAJ" EntityType="EGEM2021Model.EGEM_OFSETBITIRME_KALITENOKIMAJ" />
         </EntityContainer>
         <EntityType Name="EGEM_GRAVUR_KALITE">
           <Key>
@@ -540,7 +564,7 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <Property Name="URUN_KODU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="URUN_ADI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SIPARIS_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ZAMAN" Type="String" />
+          <Property Name="ZAMAN" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="BOBIN_NO" Type="Int32" />
           <Property Name="HAMMADDE_KONTROL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BOBIN_ENI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -599,6 +623,62 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <Property Name="ADSOYAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIPARISNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBINNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAJ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAJBYTE" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIPARISNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBINNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAJ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIPARISNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBINNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAJ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_GRAVUR_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIPARISNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBINNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAJ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_OFSETBASKI_KALITENOKIMAJ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SIPARISNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOBINNO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IMAJ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EGEM_OFSETBITIRME_KALITENOKIMAJ">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -874,6 +954,67 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <EntitySetMapping Name="EGEM_ESNEK_BASKI_KALITENOKIMAJ">
             <EntityTypeMapping TypeName="EGEM2021Model.EGEM_ESNEK_BASKI_KALITENOKIMAJ">
               <MappingFragment StoreEntitySet="EGEM_ESNEK_BASKI_KALITENOKIMAJ">
+                <ScalarProperty Name="IMAJBYTE" ColumnName="IMAJBYTE" />
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="IMAJ" ColumnName="IMAJ" />
+                <ScalarProperty Name="HATA" ColumnName="HATA" />
+                <ScalarProperty Name="BOBINNO" ColumnName="BOBINNO" />
+                <ScalarProperty Name="SIPARISNO" ColumnName="SIPARISNO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ">
+              <MappingFragment StoreEntitySet="EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ">
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="IMAJ" ColumnName="IMAJ" />
+                <ScalarProperty Name="HATA" ColumnName="HATA" />
+                <ScalarProperty Name="BOBINNO" ColumnName="BOBINNO" />
+                <ScalarProperty Name="SIPARISNO" ColumnName="SIPARISNO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ">
+              <MappingFragment StoreEntitySet="EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ">
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="IMAJ" ColumnName="IMAJ" />
+                <ScalarProperty Name="HATA" ColumnName="HATA" />
+                <ScalarProperty Name="BOBINNO" ColumnName="BOBINNO" />
+                <ScalarProperty Name="SIPARISNO" ColumnName="SIPARISNO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_GRAVUR_KALITENOKIMAJ">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_GRAVUR_KALITENOKIMAJ">
+              <MappingFragment StoreEntitySet="EGEM_GRAVUR_KALITENOKIMAJ">
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="IMAJ" ColumnName="IMAJ" />
+                <ScalarProperty Name="HATA" ColumnName="HATA" />
+                <ScalarProperty Name="BOBINNO" ColumnName="BOBINNO" />
+                <ScalarProperty Name="SIPARISNO" ColumnName="SIPARISNO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_OFSETBASKI_KALITENOKIMAJ">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_OFSETBASKI_KALITENOKIMAJ">
+              <MappingFragment StoreEntitySet="EGEM_OFSETBASKI_KALITENOKIMAJ">
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="IMAJ" ColumnName="IMAJ" />
+                <ScalarProperty Name="HATA" ColumnName="HATA" />
+                <ScalarProperty Name="BOBINNO" ColumnName="BOBINNO" />
+                <ScalarProperty Name="SIPARISNO" ColumnName="SIPARISNO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EGEM_OFSETBITIRME_KALITENOKIMAJ">
+            <EntityTypeMapping TypeName="EGEM2021Model.EGEM_OFSETBITIRME_KALITENOKIMAJ">
+              <MappingFragment StoreEntitySet="EGEM_OFSETBITIRME_KALITENOKIMAJ">
                 <ScalarProperty Name="ADRES" ColumnName="ADRES" />
                 <ScalarProperty Name="IMAJ" ColumnName="IMAJ" />
                 <ScalarProperty Name="HATA" ColumnName="HATA" />

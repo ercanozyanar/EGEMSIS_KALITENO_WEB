@@ -22,7 +22,7 @@ namespace Uretim_Kalite.Controllers
         public static string adi;
         public static string fname;
         SqlCommand komut = new SqlCommand();
-
+        public static string kod;
 
         public ActionResult Dilimlemelist(int sayfa = 1)
         {
@@ -32,6 +32,7 @@ namespace Uretim_Kalite.Controllers
 
         public ActionResult Dilimlemeduzen(string Search_Data, string Filter_Value, int? Page_No)
         {
+            kod = Search_Data;
             if (Search_Data != null)
             {
                 Page_No = 1;
@@ -148,7 +149,7 @@ namespace Uretim_Kalite.Controllers
                 }
                 else
                 {
-                    komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ofisdata\\NOK_IMAJ\\ESNEKDILIMLEME\\" + adi + "_" + MIMAJ);
+                    komut.Parameters.Add("@ADRES", adi + "_" + MIMAJ);
                 }
                 komut.ExecuteReader();
                 conn1.Close();
@@ -189,7 +190,7 @@ namespace Uretim_Kalite.Controllers
                         {
                             string dosyaadi = DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_" + DateTime.Now.Second.ToString();
                             string fileName = System.IO.Path.GetFileName(file.FileName);
-                            fname = Path.Combine(("//192.168.0.252//ofisdata//NOK_IMAJ//ESNEKDILIMLEME//"), dosyaadi + "_" + fileName);
+                            fname = Path.Combine(("~/Content/NOK_IMAJ/ESNEKDILIMLEME/"), dosyaadi + "_" + fileName);
                             file.SaveAs(fname);
                             adi = dosyaadi;
                         }
@@ -206,25 +207,92 @@ namespace Uretim_Kalite.Controllers
                 return Json("Dosya seçilmedi");
             }
         }
+
+        public ActionResult DilimlemeNOK(String Search_Data, String Filter_Value, int? Page_No)
+        {
+
+            if (Search_Data != null)
+            {
+                Page_No = 1;
+            }
+            else
+            {
+                Search_Data = Filter_Value;
+            }
+            ViewBag.FilterValue = Search_Data;
+
+            var students = from stu in db.EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ select stu;
+            if (!String.IsNullOrEmpty(Search_Data))
+            {
+                students = students.Where(stu => stu.SIPARISNO.ToString().Contains(Search_Data.ToString()));
+
+                students = students.Where(stu => stu.SIPARISNO.ToString().Contains(Search_Data.ToString()));
+            }
+            students = students.OrderByDescending(stu => stu.ID);
+            int Size_Of_Page = 10;
+            int No_Of_Page = (Page_No ?? 1);
+            return View(students.ToPagedList(No_Of_Page, Size_Of_Page));
+        }
+
         [HttpPost]
         public FileResult Export()
         {
             EGEM2021Entities1 entities = new EGEM2021Entities1();
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("ZAMAN"),
-                                            new DataColumn("SIPARIS_NO"),
-                                            new DataColumn("URUN_KODU"),
-                                            new DataColumn("URUN_ADI"),
-                                            new DataColumn("TONLAMA")});
-
-            var customers = from customer in entities.EGEM_ESNEK_DILIMLEME_KALITE.Take(10)
-                            select customer;
-
-            foreach (var customer in customers)
+            dt.Columns.AddRange(new DataColumn[22]
             {
-                dt.Rows.Add(customer.ZAMAN, customer.SIPARIS_NO, customer.URUN_KODU, customer.URUN_ADI, customer.TONLAMA);
+                new DataColumn("URUN_KODU"),
+                new DataColumn("URUN_ADI"),
+                new DataColumn("SIPARIS_NO"),
+                new DataColumn("ZAMAN"),
+                new DataColumn("BOBIN NO"),
+                new DataColumn("DILME ENI"),
+                new DataColumn("FOTOSEL ARALIGI"),
+                new DataColumn("ACILIS YONU"),
+                new DataColumn("MASURA IC CAPI"),
+                new DataColumn("EK SAYISI"),
+                new DataColumn("BOBIN CAPI"),
+                new DataColumn("GORSEL KONTROL"),
+                new DataColumn("KESIM KAYIKLIGI"),
+                new DataColumn("TONLAMA"),
+                new DataColumn("SAKAL"),
+                new DataColumn("ÇIZGI"),
+                new DataColumn("RENK UYGUNLUGU"),
+                new DataColumn("SARIM DUZGUNLUGU"),
+                new DataColumn("BOBIN EK KONTROLÜ"),
+                new DataColumn("BOBIN BARKODU OKUNABILIRLIK"),
+                new DataColumn("BARKOD KONTROLU"),
+                new DataColumn("KALITE ONAY")
+            });
+            var customers = from stu in db.EGEM_ESNEK_DILIMLEME_KALITE select stu;
+            customers = customers.Where(stu => stu.ZAMAN.ToString().Contains(kod.ToString()));
+            foreach (var customer in customers.ToList())
+            {
+                dt.Rows.Add(
+                    customer.URUN_KODU,
+                    customer.URUN_ADI,
+                    customer.SIPARIS_NO,
+                    customer.ZAMAN,
+                    customer.BOBIN_NO,
+                    customer.DILME_ENI,
+                    customer.FOTOSEL_ARALIGI,
+                    customer.ACILIS_YONU,
+                    customer.IC_CAP,
+                    customer.EK_SAYI,
+                    customer.BOBIN_CAP,
+                    customer.GORSEL_KONTROL,
+                    customer.KESIM_KAYIK,
+                    customer.TONLAMA,
+                    customer.SAKAL,
+                    customer.CIZGI,
+                    customer.RENK_UYGUN,
+                    customer.SARIM_DUZGUN,
+                    customer.BOBIN_EKI_KONTROL,
+                    customer.BOBIN_BARKOD_OKUT,
+                    customer.BARKOD_KONTROL,
+                    customer.KALITE_ONAY
+                    );
             }
-
             using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dt);

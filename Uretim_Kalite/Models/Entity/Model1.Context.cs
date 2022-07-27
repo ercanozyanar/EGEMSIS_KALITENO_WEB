@@ -35,5 +35,10 @@ namespace Uretim_Kalite.Models.Entity
         public virtual DbSet<EGEM_KALITE_USER> EGEM_KALITE_USER { get; set; }
         public virtual DbSet<EGEM_KALITE_PERSONEL> EGEM_KALITE_PERSONEL { get; set; }
         public virtual DbSet<EGEM_ESNEK_BASKI_KALITENOKIMAJ> EGEM_ESNEK_BASKI_KALITENOKIMAJ { get; set; }
+        public virtual DbSet<EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ> EGEM_ESNEK_DILIMLEME_KALITENOKIMAJ { get; set; }
+        public virtual DbSet<EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ> EGEM_ESNEK_LAMINASYON_KALITENOKIMAJ { get; set; }
+        public virtual DbSet<EGEM_GRAVUR_KALITENOKIMAJ> EGEM_GRAVUR_KALITENOKIMAJ { get; set; }
+        public virtual DbSet<EGEM_OFSETBASKI_KALITENOKIMAJ> EGEM_OFSETBASKI_KALITENOKIMAJ { get; set; }
+        public virtual DbSet<EGEM_OFSETBITIRME_KALITENOKIMAJ> EGEM_OFSETBITIRME_KALITENOKIMAJ { get; set; }
     }
 }

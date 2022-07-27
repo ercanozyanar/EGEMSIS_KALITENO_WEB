@@ -142,7 +142,7 @@ namespace Uretim_Kalite.Controllers
                 }
                 else
                 {
-                    komut.Parameters.Add("@ADRES", "\\192.168.0.252\\ofisdata\\NOK_IMAJ\\OFSETBASKI\\" + adi + "_" + MIMAJ);
+                    komut.Parameters.Add("@ADRES", adi + "_" + MIMAJ);
                 }
                 komut.ExecuteReader();
                 conn1.Close();
@@ -174,7 +174,7 @@ namespace Uretim_Kalite.Controllers
                         {
                             string dosyaadi = DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + "_" + DateTime.Now.Second.ToString();
                             string fileName = System.IO.Path.GetFileName(file.FileName);
-                            fname = Path.Combine(("//192.168.0.252//ofisdata//NOK_IMAJ//OFSETBASKI//"), dosyaadi + "_" + fileName);
+                            fname = Path.Combine(("~/Content/NOK_IMAJ/OFSETBASKI/"), dosyaadi + "_" + fileName);
                             file.SaveAs(fname);
                             adi = dosyaadi;
                         }
@@ -199,6 +199,32 @@ namespace Uretim_Kalite.Controllers
             db.SaveChanges();
             return RedirectToAction("Ofsetbaskiduzen");
 
+        }
+
+        public ActionResult OfsetbaskiNOK(String Search_Data, String Filter_Value, int? Page_No)
+        {
+
+            if (Search_Data != null)
+            {
+                Page_No = 1;
+            }
+            else
+            {
+                Search_Data = Filter_Value;
+            }
+            ViewBag.FilterValue = Search_Data;
+
+            var students = from stu in db.EGEM_OFSETBASKI_KALITENOKIMAJ select stu;
+            if (!String.IsNullOrEmpty(Search_Data))
+            {
+                students = students.Where(stu => stu.SIPARISNO.ToString().Contains(Search_Data.ToString()));
+
+                students = students.Where(stu => stu.SIPARISNO.ToString().Contains(Search_Data.ToString()));
+            }
+            students = students.OrderByDescending(stu => stu.ID);
+            int Size_Of_Page = 10;
+            int No_Of_Page = (Page_No ?? 1);
+            return View(students.ToPagedList(No_Of_Page, Size_Of_Page));
         }
 
         [HttpPost]

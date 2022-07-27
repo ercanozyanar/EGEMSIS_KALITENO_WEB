@@ -12,7 +12,7 @@ namespace Uretim_Kalite.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class EGEM_ESNEK_BASKI_KALITENOKIMAJ
+    public partial class EGEM_OFSETBITIRME_KALITENOKIMAJ
     {
         public int ID { get; set; }
         public string SIPARISNO { get; set; }
@@ -20,6 +20,5 @@ namespace Uretim_Kalite.Models.Entity
         public string HATA { get; set; }
         public string IMAJ { get; set; }
         public string ADRES { get; set; }
-        public byte[] IMAJBYTE { get; set; }
     }
 }
