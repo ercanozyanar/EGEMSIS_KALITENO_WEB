@@ -205,8 +205,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ADSOYAD" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'EGEM2022.dbo.EGEM_KALITE_USER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="EGEM_KALITE_USER">
           <Key>
             <PropertyRef Name="ID" />
@@ -214,6 +212,7 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_KALITE_USER' does not have a pri
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AD_SOYAD" Type="nvarchar(max)" />
           <Property Name="SIFRE" Type="nvarchar(max)" />
+          <Property Name="ROL" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="EGEM_OFSET_BASKI_KALITE">
           <Key>
@@ -334,17 +333,11 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <EntitySet Name="EGEM_GRAVUR_KALITE" EntityType="Self.EGEM_GRAVUR_KALITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_GRAVUR_KALITENOKIMAJ" EntityType="Self.EGEM_GRAVUR_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_KALITE_PERSONEL" EntityType="Self.EGEM_KALITE_PERSONEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EGEM_KALITE_USER" EntityType="Self.EGEM_KALITE_USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_OFSET_BASKI_KALITE" EntityType="Self.EGEM_OFSET_BASKI_KALITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_OFSET_BITIRME_KALITE" EntityType="Self.EGEM_OFSET_BITIRME_KALITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_OFSETBASKI_KALITENOKIMAJ" EntityType="Self.EGEM_OFSETBASKI_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EGEM_OFSETBITIRME_KALITENOKIMAJ" EntityType="Self.EGEM_OFSETBITIRME_KALITENOKIMAJ" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EGEM_KALITE_USER" EntityType="Self.EGEM_KALITE_USER" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [EGEM_KALITE_USER].[ID] AS [ID], 
-    [EGEM_KALITE_USER].[AD_SOYAD] AS [AD_SOYAD], 
-    [EGEM_KALITE_USER].[SIFRE] AS [SIFRE]
-    FROM [dbo].[EGEM_KALITE_USER] AS [EGEM_KALITE_USER]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="EGEM_GRAVUR_KALITE_SIPARIS" EntityType="Self.EGEM_GRAVUR_KALITE_SIPARIS" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [EGEM_GRAVUR_KALITE_SIPARIS].[FISNO] AS [FISNO], 
@@ -614,6 +607,7 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AD_SOYAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SIFRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ROL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EGEM_KALITE_PERSONEL">
           <Key>
@@ -937,6 +931,7 @@ warning 6002: The table/view 'EGEM2022.dbo.EGEM_GRAVUR_KALITE_SIPARIS' does not 
           <EntitySetMapping Name="EGEM_KALITE_USER">
             <EntityTypeMapping TypeName="EGEM2021Model.EGEM_KALITE_USER">
               <MappingFragment StoreEntitySet="EGEM_KALITE_USER">
+                <ScalarProperty Name="ROL" ColumnName="ROL" />
                 <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
                 <ScalarProperty Name="AD_SOYAD" ColumnName="AD_SOYAD" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

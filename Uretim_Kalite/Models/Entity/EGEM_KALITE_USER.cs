@@ -17,5 +17,6 @@ namespace Uretim_Kalite.Models.Entity
         public int ID { get; set; }
         public string AD_SOYAD { get; set; }
         public string SIFRE { get; set; }
+        public string ROL { get; set; }
     }
 }

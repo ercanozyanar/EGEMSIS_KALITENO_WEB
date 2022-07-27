@@ -30,8 +30,11 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/EsnekBaski/Baskiekle/">Giriş</a>
-                    <a class="dropdown-item" href="/EsnekBaski/Baskiduzen/">Düzenleme</a>
-                    <a class="dropdown-item" href="/EsnekBaski/BaskiNok/">NOK Görsel</a>
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                        <a class="dropdown-item" href="/EsnekBaski/Baskiduzen/">Düzenleme</a>
+                        <a class="dropdown-item" href="/EsnekBaski/BaskiNok/">NOK Görsel</a>
+                    }
                 </div>
             </li>
             <!-- Dropdown -->
@@ -41,9 +44,13 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/EsnekDilimleme/Dilimlemeekle/">Giriş</a>
-                    <a class="dropdown-item" href="/EsnekDilimleme/Dilimlemeduzen/">Düzenleme</a>
-                    <a class="dropdown-item" href="/EsnekDilimleme/DilimlemeNok/">NOK Görsel</a>
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                        <a class="dropdown-item" href="/EsnekDilimleme/Dilimlemeduzen/">Düzenleme</a>
+                        <a class="dropdown-item" href="/EsnekDilimleme/DilimlemeNok/">NOK Görsel</a>
+                    }
                 </div>
+
             </li>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
@@ -52,8 +59,11 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/EsnekLaminasyon/Laminasyonekle/">Giriş</a>
-                    <a class="dropdown-item" href="/EsnekLaminasyon/Laminasyonduzen/">Düzenleme</a>
-                    <a class="dropdown-item" href="/EsnekLaminasyon/LaminasyonNok/">NOK Görsel</a>
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                        <a class="dropdown-item" href="/EsnekLaminasyon/Laminasyonduzen/">Düzenleme</a>
+                        <a class="dropdown-item" href="/EsnekLaminasyon/LaminasyonNok/">NOK Görsel</a>
+                    }
                 </div>
             </li>
 
@@ -64,8 +74,11 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/Gravur/Gravurekle/">Giriş</a>
-                    <a class="dropdown-item" href="/Gravur/Gravurduzen/">Düzenleme</a>
-                    <a class="dropdown-item" href="/Gravur/GravurNok/">NOK Görsel</a>
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                        <a class="dropdown-item" href="/Gravur/Gravurduzen/">Düzenleme</a>
+                        <a class="dropdown-item" href="/Gravur/GravurNok/">NOK Görsel</a>
+                    }
                 </div>
             </li>
 
@@ -76,8 +89,11 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/OfsetBaski/Ofsetbaskiekle/">Giriş</a>
-                    <a class="dropdown-item" href="/OfsetBaski/Ofsetbaskiduzen/">Düzenleme</a>
-                    <a class="dropdown-item" href="/OfsetBaski/OfsetbaskiNok/">NOK Görsel</a>
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                        <a class="dropdown-item" href="/OfsetBaski/Ofsetbaskiduzen/">Düzenleme</a>
+                        <a class="dropdown-item" href="/OfsetBaski/OfsetbaskiNok/">NOK Görsel</a>
+                    }
                 </div>
             </li>
 
@@ -88,20 +104,26 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/OfsetBitirme/Ofsetbitirmeekle/">Giriş</a>
-                    <a class="dropdown-item" href="/OfsetBitirme/Ofsetbitirmeduzen/">Düzenleme</a>
-                    <a class="dropdown-item" href="/OfsetBitirme/OfsetbitirmeNok/">NOK Görsel</a>
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                        <a class="dropdown-item" href="/OfsetBitirme/Ofsetbitirmeduzen/">Düzenleme</a>
+                        <a class="dropdown-item" href="/OfsetBitirme/OfsetbitirmeNok/">NOK Görsel</a>
+                    }
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Kalite Personel
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/Kalite/Kaliteekle/">Giriş</a>
-                    <a class="dropdown-item" href="/Kalite/Kalitelist/">Liste</a>
-                </div>
-            </li>
-        </ul>
+            @if (User.IsInRole("ADMIN"))
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Kalite Personel
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/Kalite/Kaliteekle/">Giriş</a>
+                        <a class="dropdown-item" href="/Kalite/Kalitelist/">Liste</a>
+                    </div>
+                </li>
+            }
+            </ul>
 
 
     </nav>
